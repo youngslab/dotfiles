@@ -31,6 +31,11 @@ filetype off
 syntax on
 set t_Co=256
 set t_ut=
+set incsearch " search as characters are entered
+set hlsearch " highlight matches
+set backspace=indent,eol,start
+set cindent
+set textwidth=70
 
 " themes
 set background=dark
@@ -57,3 +62,6 @@ nnoremap <silent> <F5> :!clear;python3 %<CR> " build
 
 map <C-n> :NERDTreeToggle<CR>
 
+" move vertically by visual line
+nnoremap j gj
+nnoremap k gk

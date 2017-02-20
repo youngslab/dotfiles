@@ -17,5 +17,5 @@ ln -sfv "$DOTFILES_DIR/runcom/.tmux.conf" ~
 
 # Package managers & packages & plugins
 
-# . "$DOTFILES_DIR/install/vundle.sh" # took a long time to build ycm.
+. "$DOTFILES_DIR/install/vundle.sh" # took a long time to build ycm.
 
