@@ -7,6 +7,9 @@ mkdir -p "$BUNDLE_DIR" && (git clone https://github.com/VundleVim/Vundle.vim "$B
 vim +PluginInstall +qall
 
 # Compile YouCompleteMe
+
+sudo apt-get install python-dev cmake clang
+
 cd "$BUNDLE_DIR/youcompleteme" && ./install.py
 
 cd -
