@@ -58,7 +58,10 @@ let g:cpp_class_scope_highlight = 1
 nnoremap <silent> <F10> :bd<CR>
 nnoremap <silent> <F11> :bprevious<CR>        " buffer prev
 nnoremap <silent> <F12> :bnext<CR>            " buffer next
+
 nnoremap <silent> <F5> :!clear;python3 %<CR> " build
+
+map <F9> :w<CR>:python3 %<CR>"
 
 map <C-n> :NERDTreeToggle<CR>
 
