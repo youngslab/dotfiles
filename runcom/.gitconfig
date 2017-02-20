@@ -1,0 +1,15 @@
+
+[user]
+  name = Jaeyoung ParkLars Kappert
+  email = jaeyoungs.park@gmail.com
+
+[github]
+  user = youngslab 
+
+[core]
+  editor = vim
+  filemode = false
+  trustctime = false
+  autocrlf = input
+
+
