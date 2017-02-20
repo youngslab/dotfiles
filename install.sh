@@ -13,8 +13,9 @@ DOTFILES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 ln -sfv "$DOTFILES_DIR/runcom/.vimrc" ~
 ln -sfv "$DOTFILES_DIR/runcom/.gitconfig" ~
+ln -sfv "$DOTFILES_DIR/runcom/.tmux.conf" ~
 
 # Package managers & packages & plugins
 
-. "$DOTFILES_DIR/install/vundle.sh"
+# . "$DOTFILES_DIR/install/vundle.sh" # took a long time to build ycm.
 
