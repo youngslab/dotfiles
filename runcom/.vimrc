@@ -65,6 +65,10 @@ map <F9> :w<CR>:python3 %<CR>"
 
 map <C-n> :NERDTreeToggle<CR>
 
+nnoremap <silent> + :exe "resize +5" <CR>
+nnoremap <silent> - :exe "resize -5" <CR>
+nnoremap <silent> > :exe "vertical resize +5" <CR>
+nnoremap <silent> < :exe "vertical resize -5" <CR>
 " move vertically by visual line
 nnoremap j gj
 nnoremap k gk
