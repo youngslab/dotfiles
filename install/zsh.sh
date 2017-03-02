@@ -8,4 +8,4 @@
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 # apply custom theme
-cp $DOTFILES_DIR/runcom/pure.zsh-theme ~/.oh-my-zsh/themes
+ln -sfv "$DOTFILES_DIR/runcom/pure_c.zsh-theme" ~/.oh-my-zsh/themes
