@@ -14,6 +14,8 @@ Plugin 'sirver/ultisnips'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'nvie/vim-flake8'
 Plugin 'octol/vim-cpp-enhanced-highlight'
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
 
 " THEMES
 Plugin 'vim-airline/vim-airline'
@@ -52,6 +54,9 @@ let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 
 " plugin - syntax
 let g:cpp_class_scope_highlight = 1
+
+let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_frontmatter = 1
 
 " key maps.
 
