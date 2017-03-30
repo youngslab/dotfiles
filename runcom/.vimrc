@@ -16,6 +16,7 @@ Plugin 'nvie/vim-flake8'
 Plugin 'octol/vim-cpp-enhanced-highlight'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
+Plugin 'valloric/youcompleteme'
 
 " THEMES
 Plugin 'vim-airline/vim-airline'
@@ -36,8 +37,12 @@ set t_ut=
 set incsearch " search as characters are entered
 set hlsearch " highlight matches
 set backspace=indent,eol,start
-set cindent
 set textwidth=70
+
+" ident config.
+set cindent
+set ts=4 " Tab 너비
+set shiftwidth=4 " 자동 인덴트할 때 너비
 
 " themes
 set background=dark
@@ -57,16 +62,26 @@ let g:cpp_class_scope_highlight = 1
 
 let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_frontmatter = 1
+let g:ycm_confirm_extra_conf = 0 
 
 " key maps.
 
-nnoremap <silent> <F10> :bd<CR>
+let mapleader = ","
+nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR>
+nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
+nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+nnoremap <leader>h  :noh<CR>
+
+
+" map <F9> :w<CR>:python3 %<CR>"
+
+nnoremap <silent> <F9>  :Bclose <CR>          " close buffer
 nnoremap <silent> <F11> :bprevious<CR>        " buffer prev
 nnoremap <silent> <F12> :bnext<CR>            " buffer next
 
 nnoremap <silent> <F5> :!clear;python3 %<CR> " build
 
-map <F9> :w<CR>:python3 %<CR>"
 
 map <C-n> :NERDTreeToggle<CR>
 
