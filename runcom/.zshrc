@@ -6,7 +6,7 @@ export ZSH=~/.oh-my-zsh
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 # ZSH_THEME="robbyrussell"
-ZSH_THEME="pure_c"
+ZSH_THEME="refined"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -87,3 +87,9 @@ export LANG=en_US.UTF-8
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
+
+
+alias @browser="cd ~/workplace/repos/browser" 
+alias @hmedia="cd ~/workplace/repos/hmedia" 
+alias @work="cd ~/workplace"
+
