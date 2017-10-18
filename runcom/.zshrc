@@ -59,6 +59,10 @@ source $ZSH/oh-my-zsh.sh
 
 export PATH="$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
+# system wide enviroment variables are @ .profile
+source ~/.profile
+
+
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -89,8 +93,6 @@ export PATH="$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
-# add ccache environment.
-export PATH="/usr/lib/ccache:$PATH"
 
 
 alias @browser="cd ~/workplace/repos/browser" 
