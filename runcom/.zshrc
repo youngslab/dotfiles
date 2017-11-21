@@ -99,3 +99,8 @@ alias @browser="cd ~/workplace/repos/browser"
 alias @hmedia="cd ~/workplace/repos/hmedia" 
 alias @work="cd ~/workplace"
 
+
+eval `dircolors ~/.dircolors`
+zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
+autoload -Uz compinit
+compinit

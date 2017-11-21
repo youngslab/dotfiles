@@ -37,12 +37,14 @@ set t_ut=
 set incsearch " search as characters are entered
 set hlsearch " highlight matches
 set backspace=indent,eol,start
-set textwidth=70
+set textwidth=80
+set encoding=utf-8
+
 
 " ident config.
 set cindent
-set ts=4 " Tab 너비
-set shiftwidth=4 " 자동 인덴트할 때 너비
+set ts=4 " Tab 
+set shiftwidth=4 " 
 
 " themes
 set background=dark
