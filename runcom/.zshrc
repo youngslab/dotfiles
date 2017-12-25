@@ -34,6 +34,7 @@ ZSH_THEME="refined_2"
 # Uncomment the following line to display red dots whilst waiting for completion.
 # COMPLETION_WAITING_DOTS="true"
 
+
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
@@ -92,7 +93,7 @@ source ~/.profile
 
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
+export PATH="/usr/local/bin:$PATH:$HOME/.rvm/bin"
 
 
 alias @browser="cd ~/workplace/repos/browser" 

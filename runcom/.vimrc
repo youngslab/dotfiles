@@ -10,6 +10,9 @@ Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdtree'
 Plugin 'sirver/ultisnips'
 
+" CMake
+Plugin 'pboettch/vim-cmake-syntax'
+
 " languages
 Plugin 'davidhalter/jedi-vim'
 Plugin 'nvie/vim-flake8'
@@ -66,6 +69,10 @@ let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_frontmatter = 1
 let g:ycm_confirm_extra_conf = 0 
 
+" menu autocompletion
+set wildmenu
+set wildmode=longest:full,full " Display Vim command mode autocompletion list
+
 " key maps.
 
 let mapleader = ","
@@ -78,12 +85,13 @@ nnoremap <leader>h  :noh<CR>
 
 " map <F9> :w<CR>:python3 %<CR>"
 
-nnoremap <silent> <F9>  :Bclose <CR>          " close buffer
+nnoremap <silent> <F9>  :bd<CR>          " close buffer
 nnoremap <silent> <F11> :bprevious<CR>        " buffer prev
 nnoremap <silent> <F12> :bnext<CR>            " buffer next
 
 nnoremap <silent> <F5> :!clear;python3 %<CR> " build
-
+noremap <F3> :<C-U>!clear && mkdir -p build && cd build && cmake -G Ninja .. && cd .. <CR>
+noremap <F4> :<C-U>!clear && cd build && ninja && cd .. <CR>
 
 map <C-n> :NERDTreeToggle<CR>
 
@@ -94,3 +102,5 @@ nnoremap <silent> < :exe "vertical resize -5" <CR>
 " move vertically by visual line
 nnoremap j gj
 nnoremap k gk
+
+
