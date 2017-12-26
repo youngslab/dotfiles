@@ -1,6 +1,18 @@
 
-" set the runtime path to include Vundle and initialize
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+" For Mac/Linux users
+call plug#begin('~/.vim/bundle')
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+call plug#end()
+
 set rtp+=~/.vim/bundle/Vundle.vim
+
 call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
@@ -81,6 +93,8 @@ nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
 nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 nnoremap <leader>h  :noh<CR>
+nnoremap <leader>t  :FZF<CR>
+nnoremap <leader>b  :Buffers<CR>
 
 
 " map <F9> :w<CR>:python3 %<CR>"
