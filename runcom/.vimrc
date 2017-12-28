@@ -9,6 +9,7 @@ endif
 call plug#begin('~/.vim/bundle')
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'rhysd/vim-clang-format'
 call plug#end()
 
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -93,7 +94,7 @@ nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
 nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 nnoremap <leader>h  :noh<CR>
-nnoremap <leader>t  :FZF<CR>
+nnoremap <leader>t  :Files<CR>
 nnoremap <leader>b  :Buffers<CR>
 
 
@@ -116,5 +117,26 @@ nnoremap <silent> < :exe "vertical resize -5" <CR>
 " move vertically by visual line
 nnoremap j gj
 nnoremap k gk
+
+" --------------------------------------------------
+" configure - clang format
+let g:clang_format#auto_format = 1
+" let g:clang_format#detect_style_file = 1
+" let g:clang_format#code_style = "llvm"
+
+" key map 
+autocmd FileType h, hpp, c, cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
+autocmd FileType h, hpp, c, cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
+
+" --------------------------------------------------
+" configure - syntastatic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 

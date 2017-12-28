@@ -4,7 +4,7 @@
 # pacakges. 
 sudo apt-get update
 sudo apt-get upgrade
-sudo apt-get install zsh cmake g++ curl vim
+sudo apt-get install zsh cmake g++ curl vim clang-format
 
 
 # Get current dir (so run this script from anywhere)
