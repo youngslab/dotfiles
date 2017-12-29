@@ -4,7 +4,7 @@
 # pacakges. 
 sudo apt-get update
 sudo apt-get upgrade
-sudo apt-get install zsh cmake g++ curl vim clang-format
+sudo apt-get install zsh cmake g++ curl vim clang-format silversearcher-ag clang-tidy
 
 
 # Get current dir (so run this script from anywhere)

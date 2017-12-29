@@ -9,7 +9,12 @@ endif
 call plug#begin('~/.vim/bundle')
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'scrooloose/nerdcommenter'
+Plug 'derekwyatt/vim-fswitch'
 Plug 'rhysd/vim-clang-format'
+Plug 'tpope/vim-unimpaired'
+Plug 'vim-scripts/DoxygenToolkit.vim'
+Plug 'tpope/vim-fugitive'
 call plug#end()
 
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -80,7 +85,6 @@ let g:cpp_class_scope_highlight = 1
 
 let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_frontmatter = 1
-let g:ycm_confirm_extra_conf = 0 
 
 " menu autocompletion
 set wildmenu
@@ -89,20 +93,11 @@ set wildmode=longest:full,full " Display Vim command mode autocompletion list
 " key maps.
 
 let mapleader = ","
-nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR>
-nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
-nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
-nnoremap <leader>h  :noh<CR>
-nnoremap <leader>t  :Files<CR>
-nnoremap <leader>b  :Buffers<CR>
 
 
 " map <F9> :w<CR>:python3 %<CR>"
 
-nnoremap <silent> <F9>  :bd<CR>          " close buffer
-nnoremap <silent> <F11> :bprevious<CR>        " buffer prev
-nnoremap <silent> <F12> :bnext<CR>            " buffer next
 
 nnoremap <silent> <F5> :!clear;python3 %<CR> " build
 noremap <F3> :<C-U>!clear && mkdir -p build && cd build && cmake -G Ninja .. && cd .. <CR>
@@ -110,13 +105,40 @@ noremap <F4> :<C-U>!clear && cd build && ninja && cd .. <CR>
 
 map <C-n> :NERDTreeToggle<CR>
 
+" move vertically by visual line
+nnoremap j gj
+nnoremap k gk
+
+
+
+" --------------------------------------------------
+" configure - fold 
+nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+vnoremap <Space> zf
+
+" --------------------------------------------------
+" configure - buffers 
+nnoremap <silent> <F9>  :bp<bar>sp<bar>bn<bar>bd<CR> " close buffer
+nnoremap <silent> <F11> :bprevious<CR>        " buffer prev
+nnoremap <silent> <F12> :bnext<CR>            " buffer next
+
+" --------------------------------------------------
+" configure - utilities
+nmap \n :setlocal number!<CR>
+nmap \o :set paste!<CR>
+nmap \h :noh<CR> " disable highlight
+nmap \q :bp<bar>sp<bar>bn<bar>bd<CR> " close buffer
+nmap \t :YcmCompleter GetType<CR> 
+nmap \l :lopen<CR>
+" --------------------------------------------------
+" configure - windows
+set splitbelow
+set splitright
+
 nnoremap <silent> + :exe "resize +5" <CR>
 nnoremap <silent> - :exe "resize -5" <CR>
 nnoremap <silent> > :exe "vertical resize +5" <CR>
 nnoremap <silent> < :exe "vertical resize -5" <CR>
-" move vertically by visual line
-nnoremap j gj
-nnoremap k gk
 
 " --------------------------------------------------
 " configure - clang format
@@ -134,9 +156,33 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
+let g:syntastic_cpp_checkers = ['clang_tidy']
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
+let g:syntastic_auto_loc_list = 1 
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
+" --------------------------------------------------
+" configure - ycm 
+let g:ycm_confirm_extra_conf = 0 
+let g:ycm_goto_buffer_command = 'vertical-split'
+let g:ycm_show_diagnostics_ui = 0
+nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR>
+nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
+nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
+nnoremap <silent> <F8> :YcmCompleter GoToDefinitionElseDeclaration<CR>        " buffer prev
+inoremap <silent> <F8> <esc> :YcmCompleter GoToDefinitionElseDeclaration<CR>        " buffer prev
 
+" -------------------------------------------------
+"  configure - fstab
+nnoremap <leader>o :FSHere<CR>
+let g:fsnonewfiles = 'on'
+
+" -------------------------------------------------
+"  configure - fzf
+nnoremap <leader>t  :FZF -i<CR> " case insensitive
+nnoremap <leader>b  :Buffers<CR>
+nnoremap <leader>a  :Ag<CR>
+
+let g:DoxygenToolkit_authorName="Jaeyoung Park"
+let g:DoxygenToolkit_licenseTag="My own license" 
