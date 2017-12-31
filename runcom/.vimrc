@@ -36,6 +36,7 @@ Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 
 " THEMES
+Plug 'junegunn/goyo.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'altercation/vim-colors-solarized'
@@ -159,8 +160,12 @@ nnoremap <silent> ]w <C-W>l
 " --------------------------------------------------
 " configure - clang format
 let g:clang_format#auto_format = 1
+let g:clang_format#style_options = { 
+    \ "IndentWidth" : 2, 
+    \ "SortIncludes" : "false",
+    \ "Standard" : "C++11" }
 " let g:clang_format#detect_style_file = 1
-" let g:clang_format#code_style = "llvm"
+let g:clang_format#code_style = "llvm"
 
 " key map 
 autocmd FileType h, hpp, c, cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
@@ -182,10 +187,12 @@ let g:syntastic_c_clang_tidy_args="'-checks=*'"
 
 " for debuggings.
 " let syntastic_debug = 1 " using >:mes to check the logs.
+let g:syntastic_mode_map = { 'mode': 'passive',
+            \ 'active_filetypes': [],
+            \ 'passive_filetypes': [] }
 
-let g:syntastic_mode = "passive"
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
+let g:syntastic_always_populate_loc_list = 1 
+let g:syntastic_auto_loc_list = 1 
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 
@@ -220,3 +227,42 @@ nnoremap <leader>a  :Ag<CR>
 "  configure - doxygen 
 let g:DoxygenToolkit_authorName="Jaeyoung Park"
 let g:DoxygenToolkit_licenseTag="My own license" 
+
+" -------------------------------------------------
+"  configure - goyo 
+"function! ProseMode()
+  "call goyo#execute(0, [])
+  "set spell noci nosi noai nolist noshowmode noshowcmd
+  "set complete+=s
+  "set bg=light
+  "if !has('gui_running')
+    "let g:solarized_termcolors=256
+  "endif
+  "colors solarized
+"endfunction
+
+"command! ProseMode call ProseMode()
+"nmap \p :ProseMode<CR>
+
+function! s:goyo_enter()
+  set bg=light
+  "if !has('gui_running')
+    "let g:solarized_termcolors=256
+  "endif
+  colors solarized
+endfunction
+
+function! s:goyo_leave()
+  set bg=dark
+  "if !has('gui_running')
+    "let g:solarized_termcolors=256
+  "endif
+  colors solarized
+endfunction
+
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
+
+
+nmap \p :Goyo<CR>
+
