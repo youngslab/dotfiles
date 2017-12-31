@@ -10,42 +10,37 @@ call plug#begin('~/.vim/bundle')
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdcommenter'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
 Plug 'derekwyatt/vim-fswitch'
 Plug 'rhysd/vim-clang-format'
 Plug 'tpope/vim-unimpaired'
 Plug 'vim-scripts/DoxygenToolkit.vim'
 Plug 'tpope/vim-fugitive'
-call plug#end()
-
-set rtp+=~/.vim/bundle/Vundle.vim
-
-call vundle#begin()
-Plugin 'gmarik/Vundle.vim'
-
-" utilities
-Plugin 'tmhedberg/SimpylFold'
-Plugin 'scrooloose/syntastic'
-Plugin 'scrooloose/nerdtree'
-Plugin 'sirver/ultisnips'
-
+Plug 'djoshea/vim-autoread'
+Plug 'tmhedberg/SimpylFold'
+Plug 'scrooloose/syntastic'
+Plug 'scrooloose/nerdtree'
+Plug 'sirver/ultisnips'
+Plug 'milkypostman/vim-togglelist'
 " CMake
-Plugin 'pboettch/vim-cmake-syntax'
+Plug 'pboettch/vim-cmake-syntax'
+
+" build
+Plug 'tpope/vim-dispatch'
 
 " languages
-Plugin 'davidhalter/jedi-vim'
-Plugin 'nvie/vim-flake8'
-Plugin 'octol/vim-cpp-enhanced-highlight'
-Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
-Plugin 'valloric/youcompleteme'
+Plug 'davidhalter/jedi-vim'
+Plug 'nvie/vim-flake8'
+Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
 
 " THEMES
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'altercation/vim-colors-solarized'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'altercation/vim-colors-solarized'
+call plug#end()
 
-call vundle#end()
-filetype plugin indent on
 
 " basic
 set nocompatible
@@ -78,7 +73,6 @@ let g:airline_powerline_fonts = 1            " symbols
 set laststatus=2                             " need to show the power line.
 
 " plugin - nerd
-let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 
 " plugin - syntax
 let g:cpp_class_scope_highlight = 1
@@ -100,16 +94,24 @@ let mapleader = ","
 
 
 nnoremap <silent> <F5> :!clear;python3 %<CR> " build
-noremap <F3> :<C-U>!clear && mkdir -p build && cd build && cmake -G Ninja .. && cd .. <CR>
-noremap <F4> :<C-U>!clear && cd build && ninja && cd .. <CR>
 
-map <C-n> :NERDTreeToggle<CR>
+
 
 " move vertically by visual line
 nnoremap j gj
 nnoremap k gk
 
+" --------------------------------------------------
+" configure - build 
+"nnoremap <F3> :<C-U>!clear && mkdir -p build && cd build && cmake -G Ninja .. && cd .. <CR>
+noremap <F3> :!cmake -B./build -H. -G Ninja<CR>
+set makeprg=ninja\ -C\ ./build
+noremap <F4> :Make<CR>
 
+" --------------------------------------------------
+" configure - nerd tree 
+map <C-n> :NERDTreeToggle<CR>
+let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 
 " --------------------------------------------------
 " configure - fold 
@@ -127,9 +129,15 @@ nnoremap <silent> <F12> :bnext<CR>            " buffer next
 nmap \n :setlocal number!<CR>
 nmap \o :set paste!<CR>
 nmap \h :noh<CR> " disable highlight
-nmap \q :bp<bar>sp<bar>bn<bar>bd<CR> " close buffer
+nmap \cb :bp<bar>sp<bar>bn<bar>bd<CR> " close buffer
+nmap \cw <C-W>q " close buffer
 nmap \t :YcmCompleter GetType<CR> 
-nmap \l :lopen<CR>
+nmap \r :e!<CR> " reload w/o saving
+nmap \s :w<CR>
+
+nmap <script> <silent> \l :call ToggleLocationList()<CR>
+nmap <script> <silent> \q :call ToggleQuickfixList()<CR>
+
 " --------------------------------------------------
 " configure - windows
 set splitbelow
@@ -139,6 +147,14 @@ nnoremap <silent> + :exe "resize +5" <CR>
 nnoremap <silent> - :exe "resize -5" <CR>
 nnoremap <silent> > :exe "vertical resize +5" <CR>
 nnoremap <silent> < :exe "vertical resize -5" <CR>
+
+nmap \1 1<C-W><C-W> 
+nmap \2 2<C-W><C-W> 
+nmap \3 3<C-W><C-W> 
+nmap \4 4<C-W><C-W> 
+
+nnoremap <silent> [w <C-W>h
+nnoremap <silent> ]w <C-W>l
 
 " --------------------------------------------------
 " configure - clang format
@@ -156,11 +172,27 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-let g:syntastic_cpp_checkers = ['clang_tidy']
+let g:syntastic_cpp_checkers=["clang_tidy"]
+let g:syntastic_cpp_clang_tidy_post_args=""
+let g:syntastic_cpp_clang_tidy_args="'-checks=*' -fix-errors"
+
+let g:syntastic_c_checkers=["clang_tidy"]
+let g:syntastic_c_clang_tidy_post_args=""
+let g:syntastic_c_clang_tidy_args="'-checks=*'"
+
+" for debuggings.
+" let syntastic_debug = 1 " using >:mes to check the logs.
+
+let g:syntastic_mode = "passive"
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1 
-let g:syntastic_check_on_open = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
+
+nnoremap <leader>s :let g:syntastic_cpp_clang_tidy_args=""<CR>:SyntasticCheck<CR>
+nnoremap <leader>ss :let g:syntastic_cpp_clang_tidy_args="'-checks=*'"<CR>:SyntasticCheck<CR>
+"nmap \cc :SyntasticCheck<CR>
+"let g:syntastic_c_clang_tidy_args="'-checks=*'"
 
 " --------------------------------------------------
 " configure - ycm 
@@ -184,5 +216,7 @@ nnoremap <leader>t  :FZF -i<CR> " case insensitive
 nnoremap <leader>b  :Buffers<CR>
 nnoremap <leader>a  :Ag<CR>
 
+" -------------------------------------------------
+"  configure - doxygen 
 let g:DoxygenToolkit_authorName="Jaeyoung Park"
 let g:DoxygenToolkit_licenseTag="My own license" 

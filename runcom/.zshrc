@@ -58,7 +58,9 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH="$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="/usr/local/opt/llvm/bin:$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
 # system wide enviroment variables are @ .profile
 source ~/.profile
@@ -92,8 +94,6 @@ source ~/.profile
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="/usr/local/bin:$PATH:$HOME/.rvm/bin"
 
 
 alias @browser="cd ~/workplace/repos/browser" 
