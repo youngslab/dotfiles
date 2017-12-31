@@ -25,6 +25,9 @@ Plug 'milkypostman/vim-togglelist'
 " CMake
 Plug 'pboettch/vim-cmake-syntax'
 
+" Test
+Plug 'alepez/vim-gtest'
+
 " build
 Plug 'tpope/vim-dispatch'
 
