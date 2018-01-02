@@ -107,10 +107,12 @@ nnoremap k gk
 
 " --------------------------------------------------
 " configure - build 
-"nnoremap <F3> :<C-U>!clear && mkdir -p build && cd build && cmake -G Ninja .. && cd .. <CR>
-noremap <F3> :!cmake -B./build -H. -G Ninja<CR>
-set makeprg=ninja\ -C\ ./build
-noremap <F4> :Make<CR>
+set makeprg=ninja\ -C\ ./nbuild
+nnoremap <F5> :Make<CR>
+" -- gererate 
+nnoremap <F6> :Dispatch cmake -B./nbuild -H. -G Ninja<CR>
+" -- generate compilation
+nnoremap <F7> :Dispatch cmake -B./mbuild -H. -DCMAKE_EXPORT_COMPILE_COMMANDS=1 <CR>
 
 " --------------------------------------------------
 " configure - nerd tree 
@@ -180,12 +182,16 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-let g:syntastic_cpp_checkers=["clang_tidy"]
+let g:syntastic_cpp_checkers=["clang_check", "clang_tidy"]
 let g:syntastic_cpp_clang_tidy_post_args=""
-let g:syntastic_cpp_clang_tidy_args="'-checks=*' -fix-errors"
+let g:syntastic_cpp_clang_check_post_args=""
+let g:syntastic_cpp_clang_check_args="-p ./mbuild"
+let g:syntastic_cpp_clang_tidy_args="'-checks=*' -fix-errors -p ./mbuild"
+let g:syntastic_cpp_check_header = 1 "belongs to gcc checker.
 
-let g:syntastic_c_checkers=["clang_tidy"]
+let g:syntastic_c_checkers=["clang_check", "clang_tidy"]
 let g:syntastic_c_clang_tidy_post_args=""
+let g:syntastic_cpp_clang_check_post_args=""
 let g:syntastic_c_clang_tidy_args="'-checks=*'"
 
 " for debuggings.
@@ -196,11 +202,12 @@ let g:syntastic_mode_map = { 'mode': 'passive',
 
 let g:syntastic_always_populate_loc_list = 1 
 let g:syntastic_auto_loc_list = 1 
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
+let g:syntastic_check_on_open = 0 
+let g:syntastic_check_on_wq = 1 
 
-nnoremap <leader>s :let g:syntastic_cpp_clang_tidy_args=""<CR>:SyntasticCheck<CR>
-nnoremap <leader>ss :let g:syntastic_cpp_clang_tidy_args="'-checks=*'"<CR>:SyntasticCheck<CR>
+nnoremap <leader>s :let b:syntastic_cpp_clang_tidy_args=""<CR> :let b:syntastic_mode="active" <CR>
+nnoremap <leader>ss :let b:syntastic_cpp_clang_tidy_args="'-checks=*'"<CR> :let b:syntastic_mode="active"<CR>
+nnoremap <leader>sss :let b:syntastic_mode="passive"<CR>
 "nmap \cc :SyntasticCheck<CR>
 "let g:syntastic_c_clang_tidy_args="'-checks=*'"
 
@@ -228,7 +235,7 @@ nnoremap <leader>a  :Ag<CR>
 
 " -------------------------------------------------
 "  configure - doxygen 
-let g:DoxygenToolkit_authorName="Jaeyoung Park"
+let g:DoxygenToolkit_authorName="Jaeyqwoung Park"
 let g:DoxygenToolkit_licenseTag="My own license" 
 
 " -------------------------------------------------
