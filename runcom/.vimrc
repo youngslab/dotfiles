@@ -124,18 +124,15 @@ let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 vnoremap <Space> zf
 
-" --------------------------------------------------
-" configure - buffers 
-nnoremap <silent> <F9>  :bp<bar>sp<bar>bn<bar>bd<CR> " close buffer
-nnoremap <silent> <F11> :bprevious<CR>        " buffer prev
-nnoremap <silent> <F12> :bnext<CR>            " buffer next
+
+
+nnoremap <silent> \h :noh<CR>                     " close highlight
+
 
 " --------------------------------------------------
 " configure - utilities
 nmap \n :setlocal number!<CR>
 nmap \o :set paste!<CR>
-nmap \h :noh<CR> " disable highlight
-nmap \cb :bp<bar>sp<bar>bn<bar>bd<CR> " close buffer
 nmap \cw <C-W>q " close buffer
 nmap \t :YcmCompleter GetType<CR> 
 nmap \r :e!<CR> " reload w/o saving
@@ -144,23 +141,6 @@ nmap \s :w<CR>
 nmap <script> <silent> \l :call ToggleLocationList()<CR>
 nmap <script> <silent> \q :call ToggleQuickfixList()<CR>
 
-" --------------------------------------------------
-" configure - windows
-set splitbelow
-set splitright
-
-nnoremap <silent> + :exe "resize +5" <CR>
-nnoremap <silent> - :exe "resize -5" <CR>
-nnoremap <silent> > :exe "vertical resize +5" <CR>
-nnoremap <silent> < :exe "vertical resize -5" <CR>
-
-nmap \1 1<C-W><C-W> 
-nmap \2 2<C-W><C-W> 
-nmap \3 3<C-W><C-W> 
-nmap \4 4<C-W><C-W> 
-
-nnoremap <silent> [w <C-W>h
-nnoremap <silent> ]w <C-W>l
 
 " --------------------------------------------------
 " configure - clang format
@@ -184,9 +164,9 @@ set statusline+=%*
 
 let g:syntastic_cpp_checkers=["clang_check", "clang_tidy"]
 let g:syntastic_cpp_clang_tidy_post_args=""
+" let g:syntastic_cpp_clang_tidy_args="-checks='*' -fix-errors -p ./mbuild"
 let g:syntastic_cpp_clang_check_post_args=""
-let g:syntastic_cpp_clang_check_args="-p ./mbuild"
-let g:syntastic_cpp_clang_tidy_args="'-checks=*' -fix-errors -p ./mbuild"
+let g:syntastic_cpp_clang_check_args="-p ./mbuild -fixit"
 let g:syntastic_cpp_check_header = 1 "belongs to gcc checker.
 
 let g:syntastic_c_checkers=["clang_check", "clang_tidy"]
@@ -205,8 +185,8 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0 
 let g:syntastic_check_on_wq = 1 
 
-nnoremap <leader>s :let b:syntastic_cpp_clang_tidy_args=""<CR> :let b:syntastic_mode="active" <CR>
-nnoremap <leader>ss :let b:syntastic_cpp_clang_tidy_args="'-checks=*'"<CR> :let b:syntastic_mode="active"<CR>
+nnoremap <leader>s :let b:syntastic_cpp_clang_tidy_args="-fix-errors -p ./mbuild"<CR> :let b:syntastic_mode="active" <CR>
+nnoremap <leader>ss :let b:syntastic_cpp_clang_tidy_args="'-checks=*' -fix-errors -p ./mbuild"<CR> :let b:syntastic_mode="active"<CR>
 nnoremap <leader>sss :let b:syntastic_mode="passive"<CR>
 "nmap \cc :SyntasticCheck<CR>
 "let g:syntastic_c_clang_tidy_args="'-checks=*'"
@@ -218,9 +198,11 @@ let g:ycm_goto_buffer_command = 'vertical-split'
 let g:ycm_show_diagnostics_ui = 0
 nnoremap <leader>gl :YcmCompleter GoToDeclaration<CR>
 nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
-nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
-nnoremap <silent> <F8> :YcmCompleter GoToDefinitionElseDeclaration<CR>        " buffer prev
-inoremap <silent> <F8> <esc> :YcmCompleter GoToDefinitionElseDeclaration<CR>        " buffer prev
+
+nnoremap <silent> <F11> :YcmCompleter GoToDeclaration<CR>        
+inoremap <silent> <F11> <esc> :YcmCompleter GoToDeclaration<CR>
+nnoremap <silent> <F12> :YcmCompleter GoToDefinitionElseDeclaration<CR>        
+inoremap <silent> <F12> <esc> :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 " -------------------------------------------------
 "  configure - fstab
@@ -274,5 +256,47 @@ autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 
-nmap \p :Goyo<CR>
+nmap ,p :Goyo<CR>
 
+" -------------------------------------------------
+"  configure - GTest
+nnoremap <F9> :GTestRunUnderCursor<CR>
+inoremap <F9> <esc> :GTestRunUnderCursor<CR>
+nnoremap <F10> :GTestRun<CR>
+inoremap <F10> <esc> :GTestRun<CR>
+
+
+" --------------------------------------------------
+" configure - (b)uffers 
+nnoremap <silent> \b :bp<bar>sp<bar>bn<bar>bd<CR> " [close]
+
+" --------------------------------------------------
+" configure - (p)review 
+nnoremap <silent> \p :pclose <CR> " [close]
+
+
+" --------------------------------------------------
+" configure - (w)indows
+set splitbelow
+set splitright
+
+nnoremap <silent> + :exe "resize +5" <CR>
+nnoremap <silent> - :exe "resize -5" <CR>
+nnoremap <silent> > :exe "vertical resize +5" <CR>
+nnoremap <silent> < :exe "vertical resize -5" <CR>
+
+nmap \1 1<C-W><C-W> 
+nmap \2 2<C-W><C-W> 
+nmap \3 3<C-W><C-W> 
+nmap \4 4<C-W><C-W> 
+
+nnoremap <silent> \w :q <CR>  " [close]
+nnoremap <silent> [w <C-W>h   " [next]
+nnoremap <silent> ]w <C-W>l   " [prev]
+
+" configure - (q)uick
+nnoremap <silent> \q :cclose <CR> 
+
+
+" configure - (e)tc - quick, loc, preview..
+nnoremap <silent> \e :cclose <CR> :lclose<CR> :pclose <CR>
