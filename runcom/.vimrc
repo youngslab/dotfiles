@@ -10,39 +10,56 @@ call plug#begin('~/.vim/bundle')
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdcommenter'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
-Plug 'derekwyatt/vim-fswitch'
-Plug 'rhysd/vim-clang-format'
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/syntastic', {'for': 'cpp'}
+
+" key binding 
 Plug 'tpope/vim-unimpaired'
-Plug 'vim-scripts/DoxygenToolkit.vim'
+
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' , 'for': 'cpp'}
+Plug 'derekwyatt/vim-fswitch'
+" Test
+Plug 'alepez/vim-gtest', {'for': 'cpp'}
 Plug 'tpope/vim-fugitive'
+
 Plug 'djoshea/vim-autoread'
 Plug 'tmhedberg/SimpylFold'
-Plug 'scrooloose/syntastic'
-Plug 'scrooloose/nerdtree'
 Plug 'sirver/ultisnips'
 Plug 'milkypostman/vim-togglelist'
-" CMake
-Plug 'pboettch/vim-cmake-syntax'
-
-" Test
-Plug 'alepez/vim-gtest'
 
 " build
 Plug 'tpope/vim-dispatch'
-
-" languages
-Plug 'davidhalter/jedi-vim'
-Plug 'nvie/vim-flake8'
-Plug 'octol/vim-cpp-enhanced-highlight'
-Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown'
 
 " THEMES
 Plug 'junegunn/goyo.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'altercation/vim-colors-solarized'
+
+""""""""""""""""""""""""""""""
+""""""""" languages """""""""
+""""""""""""""""""""""""""""""
+" LANGUAGE - cpp
+Plug 'rhysd/vim-clang-format', {'for': 'cpp'}
+Plug 'vim-scripts/DoxygenToolkit.vim', {'for': 'cpp'}
+Plug 'octol/vim-cpp-enhanced-highlight'   , {'for': 'cpp'}
+
+" LANGUAGE - Markdown
+Plug 'plasticboy/vim-markdown'
+
+" LANGUAGE - CMake
+Plug 'pboettch/vim-cmake-syntax'
+
+" Haskell
+Plug 'eagletmt/ghcmod-vim' , {'for': 'haskell'}
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+Plug 'eagletmt/neco-ghc', {'for': 'haskell'}
+Plug 'neovimhaskell/haskell-vim' , {'for': 'haskell'}
+Plug 'alx741/vim-hindent', {'for': 'haskell'}
+
+" Python 
+Plug 'klen/python-mode' , {'for': 'python', 'branch': 'develop'} 
+Plug 'scrooloose/syntastic', {'for': 'python'}
 call plug#end()
 
 
@@ -50,8 +67,8 @@ call plug#end()
 set nocompatible
 set term=screen-256color  " support 256 color in term
 set nu                   " line numbering
-filetype off
 syntax on
+filetype plugin indent on
 set t_Co=256
 set t_ut=
 set incsearch " search as characters are entered
@@ -297,6 +314,6 @@ nnoremap <silent> ]w <C-W>l   " [prev]
 " configure - (q)uick
 nnoremap <silent> \q :cclose <CR> 
 
-
 " configure - (e)tc - quick, loc, preview..
 nnoremap <silent> \e :cclose <CR> :lclose<CR> :pclose <CR>
+

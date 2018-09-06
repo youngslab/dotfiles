@@ -107,3 +107,7 @@ autoload -Uz compinit
 compinit
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export PATH="/usr/local/opt/llvm@5/bin:$PATH"
+
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
