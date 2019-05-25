@@ -77,14 +77,18 @@ set backspace=indent,eol,start
 set textwidth=80
 set encoding=utf-8
 
-" Hybrid line number ( relative + absolute)
-:set number relativenumber
-:set nu rnu
 
-" ident config.
+" indent config.
+set autoindent
 set cindent
-set ts=4 " Tab 
-set shiftwidth=4 " 
+set expandtab " tab to space
+set tabstop=2 
+set shiftwidth=2
+
+" Hybrid line number ( relative + absolute)
+set number relativenumber
+set nu rnu
+
 
 " themes
 set background=dark
