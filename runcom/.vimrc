@@ -65,8 +65,8 @@ call plug#end()
 
 " basic
 set nocompatible
-set term=screen-256color  " support 256 color in term
-set nu                   " line numbering
+" set term=screen-256color  " support 256 color in term
+set term=xterm-256color  " support 256 color in term
 syntax on
 filetype plugin indent on
 set t_Co=256
@@ -77,6 +77,9 @@ set backspace=indent,eol,start
 set textwidth=80
 set encoding=utf-8
 
+" Hybrid line number ( relative + absolute)
+:set number relativenumber
+:set nu rnu
 
 " ident config.
 set cindent
@@ -127,7 +130,7 @@ nnoremap k gk
 set makeprg=ninja\ -C\ ./nbuild
 nnoremap <F5> :Make<CR>
 " -- gererate 
-nnoremap <F6> :Dispatch cmake -B./nbuild -H. -G Ninja<CR>
+nnoremap <F6> :Dispatch cmake -B./nbuild -H. -G Ninja -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_BUILD_TYPE=Debug<CR>
 " -- generate compilation
 nnoremap <F7> :Dispatch cmake -B./mbuild -H. -DCMAKE_EXPORT_COMPILE_COMMANDS=1 <CR>
 
@@ -148,7 +151,8 @@ nnoremap <silent> \h :noh<CR>                     " close highlight
 
 " --------------------------------------------------
 " configure - utilities
-nmap \n :setlocal number!<CR>
+nmap \n :setlocal number! relativenumber!<CR>
+
 nmap \o :set paste!<CR>
 nmap \cw <C-W>q " close buffer
 nmap \t :YcmCompleter GetType<CR> 
