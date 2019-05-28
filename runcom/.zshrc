@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH=~/.oh-my-zsh
+export ZSH=~/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -93,21 +93,15 @@ source ~/.profile
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-
-
-
-alias @browser="cd ~/workplace/repos/browser" 
-alias @hmedia="cd ~/workplace/repos/hmedia" 
-alias @work="cd ~/workplace"
-
-
+# LINUX ONLY.
 eval `dircolors ~/.dircolors`
 zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
 autoload -Uz compinit
 compinit
 
+# Quick File saerch
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export PATH="/usr/local/opt/llvm@5/bin:$PATH"
 
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+
+# MISC FUNCTION
+source ~/.misc.sh

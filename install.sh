@@ -22,6 +22,7 @@ ln -sfv "$DOTFILES_DIR/runcom/.tmux.conf" ~
 ln -sfv "$DOTFILES_DIR/runcom/.zshrc" ~
 ln -sfv "$DOTFILES_DIR/runcom/.profile" ~
 ln -sfv "$DOTFILES_DIR/runcom/.dircolors" ~
+ln -sfv "$DOTFILES_DIR/runcom/.misc.sh" ~
 
 ./install/zsh.sh
 ./install/vundle.sh
