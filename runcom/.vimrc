@@ -89,6 +89,8 @@ set shiftwidth=2
 set number relativenumber
 set nu rnu
 
+" clipboard
+set clipboard=unnamed " use OS clipboard
 
 " themes
 set background=dark
@@ -112,18 +114,10 @@ let g:vim_markdown_frontmatter = 1
 set wildmenu
 set wildmode=longest:full,full " Display Vim command mode autocompletion list
 
+" let g:ycm_min_num_of_chars_for_completion=99
+
 " key maps.
-
 let mapleader = ","
-
-
-
-" map <F9> :w<CR>:python3 %<CR>"
-
-
-nnoremap <silent> <F5> :!clear;python3 %<CR> " build
-
-
 
 " move vertically by visual line
 nnoremap j gj
