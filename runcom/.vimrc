@@ -77,6 +77,9 @@ set backspace=indent,eol,start
 set textwidth=80
 set encoding=utf-8
 
+" Hybrid line number ( relative + absolute)
+:set number relativenumber
+:set nu rnu
 
 " indent config.
 set autoindent
