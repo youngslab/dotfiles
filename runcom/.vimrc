@@ -82,8 +82,9 @@ set encoding=utf-8
 :set nu rnu
 
 " indent config.
-set autoindent
+" set autoindent
 set cindent
+set smartindent
 set expandtab " tab to space
 set tabstop=2 
 set shiftwidth=2
