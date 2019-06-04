@@ -59,6 +59,10 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=5'
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
+# key bind
+bindkey '^p' history-beginning-search-backward
+bindkey '^n' history-beginning-search-forward
+
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="/usr/local/opt/llvm/bin:$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
