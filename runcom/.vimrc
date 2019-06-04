@@ -27,6 +27,9 @@ Plug 'tmhedberg/SimpylFold'
 Plug 'sirver/ultisnips'
 Plug 'milkypostman/vim-togglelist'
 
+" infra
+Plug 'will133/vim-dirdiff'
+
 " build
 Plug 'tpope/vim-dispatch'
 
