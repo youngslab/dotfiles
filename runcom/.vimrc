@@ -126,7 +126,12 @@ set wildmode=longest:full,full " Display Vim command mode autocompletion list
 " key maps.
 let mapleader = ","
 
-" move vertically by visual line
+inoremap <C-a> <C-o>^
+inoremap <C-e> <C-o>$
+inoremap <C-b> <C-o>h
+inoremap <C-f> <C-o>l
+
+" move vertically by visual line 
 nnoremap j gj
 nnoremap k gk
 
@@ -258,6 +263,7 @@ let g:DoxygenToolkit_licenseTag="My own license"
   "endif
   "colors solarized
 "endfunction
+
 
 "command! ProseMode call ProseMode()
 "nmap \p :ProseMode<CR>
