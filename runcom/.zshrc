@@ -52,12 +52,13 @@ ZSH_THEME="refined_2"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git autojump zsh-autosuggestions zsh-syntax-highlighting)
+
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=5'
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="/usr/local/opt/llvm/bin:$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
