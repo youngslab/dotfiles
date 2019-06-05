@@ -99,10 +99,16 @@ source ~/.profile
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # LINUX ONLY.
-eval `dircolors ~/.dircolors`
-zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
-autoload -Uz compinit
-compinit
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+  eval `dircolors ~/.dircolors`
+  zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
+  autoload -Uz compinit
+  compinit
+elif [[ "$OSTYPE" == "darwin18.2.0" ]]; then
+  export LSCOLORS=exfxfeaeBxxehehbadacea
+fi  
+
+
 
 # Quick File saerch
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
