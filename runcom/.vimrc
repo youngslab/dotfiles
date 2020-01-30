@@ -39,6 +39,10 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'altercation/vim-colors-solarized'
 
+" TAGS
+Plug 'brookhong/cscope.vim'
+Plug 'craigemery/vim-autotag'
+
 """"""""""""""""""""""""""""""
 """"""""" languages """""""""
 """"""""""""""""""""""""""""""
@@ -137,7 +141,7 @@ nnoremap k gk
 
 " --------------------------------------------------
 " configure - build 
-set makeprg=ninja\ -C\ ./nbuild
+set makeprg=make\ -C\ ./build
 nnoremap <F5> :Make<CR>
 " -- gererate 
 nnoremap <F6> :Dispatch cmake -B./nbuild -H. -G Ninja -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_BUILD_TYPE=Debug<CR>
@@ -331,4 +335,43 @@ nnoremap <silent> \q :cclose <CR>
 
 " configure - (e)tc - quick, loc, preview..
 nnoremap <silent> \e :cclose <CR> :lclose<CR> :pclose <CR>
+
+nnoremap <leader>fa :call CscopeFindInteractive(expand('<cword>'))<CR>
+" s: Find this C symbol
+nnoremap  <leader>fs :call CscopeFind('s', expand('<cword>'))<CR>
+" g: Find this definition
+nnoremap  <leader>fg :call CscopeFind('g', expand('<cword>'))<CR>
+" d: Find functions called by this function
+nnoremap  <leader>fd :call CscopeFind('d', expand('<cword>'))<CR>
+" c: Find functions calling this function
+nnoremap  <leader>fc :call CscopeFind('c', expand('<cword>'))<CR>
+" t: Find this text string
+nnoremap  <leader>ft :call CscopeFind('t', expand('<cword>'))<CR>
+" e: Find this egrep pattern
+nnoremap  <leader>fe :call CscopeFind('e', expand('<cword>'))<CR>
+" f: Find this file
+nnoremap  <leader>ff :call CscopeFind('f', expand('<cword>'))<CR>
+" i: Find files #including this file
+nnoremap  <leader>fi :call CscopeFind('i', expand('<cword>'))<CR>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

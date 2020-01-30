@@ -22,3 +22,5 @@ export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 export PATH="/usr/lib/ccache:$PATH"
 
 
+eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
