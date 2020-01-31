@@ -116,3 +116,6 @@ fi
 
 # MISC FUNCTION
 source ~/.misc.sh
+
+
+export PATH=~/tools/platform-tools:$PATH

@@ -67,6 +67,10 @@ Plug 'alx741/vim-hindent', {'for': 'haskell'}
 " Python 
 Plug 'klen/python-mode' , {'for': 'python', 'branch': 'develop'} 
 Plug 'scrooloose/syntastic', {'for': 'python'}
+
+" ctags and cscope "
+Plug 'brookhong/cscope.vim' " , {'for':  ['c', 'cpp'] }
+
 call plug#end()
 
 
@@ -92,7 +96,7 @@ set encoding=utf-8
 " set autoindent
 set cindent
 set smartindent
-set expandtab " tab to space
+" set expandtab " tab to space
 set tabstop=2 
 set shiftwidth=2
 
@@ -141,7 +145,8 @@ nnoremap k gk
 
 " --------------------------------------------------
 " configure - build 
-set makeprg=make\ -C\ ./build
+set makeprg=cmake\ --build\ ./build
+
 nnoremap <F5> :Make<CR>
 " -- gererate 
 nnoremap <F6> :Dispatch cmake -B./nbuild -H. -G Ninja -DCMAKE_EXPORT_COMPILE_COMMANDS=1 -DCMAKE_BUILD_TYPE=Debug<CR>
@@ -179,7 +184,7 @@ nmap <script> <silent> \q :call ToggleQuickfixList()<CR>
 
 " --------------------------------------------------
 " configure - clang format
-let g:clang_format#auto_format = 1
+let g:clang_format#auto_format = 0
 let g:clang_format#style_options = { 
     \ "IndentWidth" : 2, 
     \ "SortIncludes" : "false",
@@ -354,24 +359,13 @@ nnoremap  <leader>ff :call CscopeFind('f', expand('<cword>'))<CR>
 " i: Find files #including this file
 nnoremap  <leader>fi :call CscopeFind('i', expand('<cword>'))<CR>
 
+" --------------------------------------------------
+" List Mode
+" show hidden characters in Vim
+:set list
 
+" settings for hidden chars (or set lcs=.....)
+:set listchars=tab:▒░,trail:▓,nbsp:░
+" set listchars=eol:⏎,tab:␉·,trail:␠,nbsp:⎵
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+" --------------------------------------------------
