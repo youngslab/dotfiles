@@ -1,0 +1,21 @@
+#!/bin/bash
+#title           :l2w
+#description     :convert a path from linux to windows.
+#author          :jaeyoungs.park@gmail.com
+#date            :20200226
+#version         :0.1
+#usage           :l2w ./path/to/the/file/or/directory
+#==============================================================================
+
+# prerequsite
+# - linux directory to be changed into a windows drive
+linux_directory="${HOME}"
+windows_drive="y:"
+
+if [ "$1" ]; then
+  directory=`echo "$(cd "$(dirname "$1")"; pwd)/$(basename "$1")"`
+else
+  directory=`pwd`
+fi
+
+echo ${directory} | sed "s#${linux_directory}#${windows_drive}#g" | sed "s#\/#\\\#g"

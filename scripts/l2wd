@@ -1,4 +1,0 @@
-#!/bin/bash
-
-WIN_DIR="y:\\\dev"
-pwd | sed "s#${HOME}#${WIN_DIR}#g" | sed "s#\/#\\\#g"
