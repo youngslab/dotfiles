@@ -21,6 +21,8 @@ export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 # add ccache enviroment
 export PATH="/usr/lib/ccache:$PATH"
 
+# add linux scripts
+export PATH="$HOME/.scripts:$PATH"
 
 # eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 # eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)

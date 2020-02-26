@@ -24,5 +24,7 @@ ln -sfv "$DOTFILES_DIR/runcom/.profile" ~
 ln -sfv "$DOTFILES_DIR/runcom/.dircolors" ~
 ln -sfv "$DOTFILES_DIR/runcom/.misc.sh" ~
 
+ln -sfv "$DOTFILES_DIR/scripts" ~/.scripts
+
 ./install/zsh.sh
 ./install/vundle.sh
