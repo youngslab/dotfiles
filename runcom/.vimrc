@@ -73,6 +73,14 @@ Plug 'brookhong/cscope.vim' " , {'for':  ['c', 'cpp'] }
 
 call plug#end()
 
+" Setup g:os for current Operating System.
+if !exists("g:os")
+    if has("win64") || has("win32") || has("win16")
+        let g:os = "Windows"
+    else
+        let g:os = substitute(system('uname'), '\n', '', '')
+    endif
+endif
 
 " basic
 set nocompatible
@@ -105,7 +113,13 @@ set number relativenumber
 set nu rnu
 
 " clipboard
-set clipboard=unnamed " use OS clipboard
+
+
+if g:os == "Darwin"
+  set clipboard=unnamed " use OS clipboard
+elseif g:os == "Linux"
+  set clipboard=unnamedplus " use OS clipboard
+endif
 
 " themes
 set background=dark
