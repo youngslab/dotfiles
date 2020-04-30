@@ -340,6 +340,7 @@ nnoremap <silent> - :exe "resize -5" <CR>
 nnoremap <silent> > :exe "vertical resize +5" <CR>
 nnoremap <silent> < :exe "vertical resize -5" <CR>
 
+
 nmap \1 1<C-W><C-W> 
 nmap \2 2<C-W><C-W> 
 nmap \3 3<C-W><C-W> 
@@ -383,3 +384,10 @@ nnoremap  <leader>fi :call CscopeFind('i', expand('<cword>'))<CR>
 " set listchars=eol:⏎,tab:␉·,trail:␠,nbsp:⎵
 
 " --------------------------------------------------
+
+
+" pane movement
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
