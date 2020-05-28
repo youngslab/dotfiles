@@ -1,0 +1,10 @@
+
+# lamb
+sshfs -o allow_other jy000.park@10.229.9.70:/home1/jy000.park/dev ~/dev
+
+# integration
+sudo mount -t cifs //10.229.9.35/shared/integration ~/integration -o username=euto,password=1234
+
+sudo mount -t cifs //10.229.9.70/public ~/public -o username=jy000.park,password=welcome!
+# integration
+# sudo mount -t cifs //10.229.9.35/shared/integration ~/integration -o username=euto,password=1234
