@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 
-# pacakges. 
+# pacakges.
 sudo apt-get update
 sudo apt-get upgrade
 sudo apt-get install zsh cmake g++ curl vim clang-format silversearcher-ag clang-tidy

@@ -82,8 +82,6 @@ if !exists("g:os")
     endif
 endif
 
-" basic
-set nocompatible
 " set term=screen-256color  " support 256 color in term
 set term=xterm-256color  " support 256 color in term
 syntax on
@@ -392,13 +390,44 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-tnoremap <C-J> <C-W><C-J>
-tnoremap <C-K> <C-W><C-K>
-tnoremap <C-L> <C-W><C-L>
-tnoremap <C-H> <C-W><C-H>
-
 " insert mode cursor movment
 inoremap <C-J> <Down>
 inoremap <C-K> <Up>
 inoremap <C-L> <Right>
 inoremap <C-H> <Left>
+
+" terminal movement
+au TerminalOpen * if &buftype == 'terminal' | setlocal bufhidden=hide | endif
+au BufEnter * if &buftype == 'terminal' | :startinsert | endif
+
+tnoremap <C-J> <C-W><C-J>
+tnoremap <C-K> <C-W><C-K>
+tnoremap <C-L> <C-W><C-L>
+tnoremap <C-H> <C-W><C-H>
+
+nnoremap <C-[> :call Term_toggle(10)<cr>
+tnoremap <C-[> <C-W>:call Term_toggle(10)<cr>
+nnoremap <C-]> :call Term_toggle(10)<cr>
+tnoremap <C-]> <C-W>:call Term_toggle(10)<cr>
+
+let g:term_buf = 0
+let g:term_win = 0
+
+function! Term_toggle(height)
+	 if win_gotoid(g:term_win)
+			 hide
+	 else
+			 botright new
+			 exec "resize " . a:height
+			 try
+					 exec "buffer " . g:term_buf
+			 catch
+					 " call termopen($SHELL, {"detach": 0})
+					 exe "term++curwin"
+					 let g:term_buf = bufnr("")
+			 endtry
+			 startinsert!
+			 let g:term_win = win_getid()
+	 endif
+endfunction
+
