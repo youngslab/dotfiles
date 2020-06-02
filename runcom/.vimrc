@@ -268,12 +268,12 @@ nnoremap <leader>b  :Buffers<CR>
 nnoremap <leader>a  :Ag<CR>
 
 " -------------------------------------------------
-"  configure - doxygen 
-let g:DoxygenToolkit_authorName="Jaeyqwoung Park"
-let g:DoxygenToolkit_licenseTag="My own license" 
+"  configure - doxygen
+let g:DoxygenToolkit_authorName="Jaeyoung Park"
+let g:DoxygenToolkit_licenseTag="My own license"
 
 " -------------------------------------------------
-"  configure - goyo 
+"  configure - goyo
 "function! ProseMode()
   "call goyo#execute(0, [])
   "set spell noci nosi noai nolist noshowmode noshowcmd
@@ -320,11 +320,11 @@ inoremap <F10> <esc> :GTestRun<CR>
 
 
 " --------------------------------------------------
-" configure - (b)uffers 
+" configure - (b)uffers
 nnoremap <silent> \b :bp<bar>sp<bar>bn<bar>bd<CR> " [close]
 
 " --------------------------------------------------
-" configure - (p)review 
+" configure - (p)review
 nnoremap <silent> \p :pclose <CR> " [close]
 
 
@@ -339,10 +339,10 @@ nnoremap <silent> > :exe "vertical resize +5" <CR>
 nnoremap <silent> < :exe "vertical resize -5" <CR>
 
 
-nmap \1 1<C-W><C-W> 
-nmap \2 2<C-W><C-W> 
-nmap \3 3<C-W><C-W> 
-nmap \4 4<C-W><C-W> 
+nmap \1 1<C-W><C-W>
+nmap \2 2<C-W><C-W>
+nmap \3 3<C-W><C-W>
+nmap \4 4<C-W><C-W>
 
 nnoremap <silent> \w :q <CR>  " [close]
 nnoremap <silent> [w <C-W>h   " [next]
@@ -396,23 +396,30 @@ inoremap <C-K> <Up>
 inoremap <C-L> <Right>
 inoremap <C-H> <Left>
 
-" terminal movement
+" ----------------------
+" Termianl Configuration
+" ----------------------
+
+" auto commands
+au ExitPre * call Term_Exit()
 au TerminalOpen * if &buftype == 'terminal' | setlocal bufhidden=hide | endif
 au BufEnter * if &buftype == 'terminal' | :startinsert | endif
+au BufDelete * if &buftype == 'terminal' | echom "BufDelete" | endif
+au BufUnload * if &buftype == 'terminal' | echom "BufUnload" | endif
 
+" window movoment
 tnoremap <C-J> <C-W><C-J>
 tnoremap <C-K> <C-W><C-K>
 tnoremap <C-L> <C-W><C-L>
 tnoremap <C-H> <C-W><C-H>
 
-nnoremap <C-[> :call Term_toggle(10)<cr>
-tnoremap <C-[> <C-W>:call Term_toggle(10)<cr>
-nnoremap <C-]> :call Term_toggle(10)<cr>
-tnoremap <C-]> <C-W>:call Term_toggle(10)<cr>
+" toggle keymap
+nnoremap <C-G> :call Term_toggle(10)<CR>
+tnoremap <C-G> <C-W>:call Term_toggle(10)<CR>
 
+" toggling function
 let g:term_buf = 0
 let g:term_win = 0
-
 function! Term_toggle(height)
 	 if win_gotoid(g:term_win)
 			 hide
@@ -426,8 +433,14 @@ function! Term_toggle(height)
 					 exe "term++curwin"
 					 let g:term_buf = bufnr("")
 			 endtry
+			 echom "terminal buf : " g:term_buf
 			 startinsert!
 			 let g:term_win = win_getid()
 	 endif
+endfunction
+
+function! Term_Exit()
+	echom "try to delete: buffer nr: " g:term_buf
+	exec "bdelete! " g:term_buf
 endfunction
 
