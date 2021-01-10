@@ -1,11 +1,4 @@
-# ~/.bashrc: executed by bash(1) for non-login shells.
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
-
-# Launch Zsh
-if [ -t 1 ]; then
-	exec zsh
-fi
+# ~/.bashrc: executed by bash(1) for non-login shells.  # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc) # for examples
 
 # If not running interactively, don't do anything
 case $- in
@@ -21,8 +14,11 @@ HISTCONTROL=ignoreboth
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
+HISTSIZE=100000
+HISTFILESIZE=20000
+
+# store bash history imdediately
+PROMPT_COMMAND='history -a;history -n'
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -97,6 +93,21 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
+# some more cd aliases
+alias c='cd ..'
+alias cc='cd ../..'
+alias ccc='cd ../../..'
+alias cccc='cd ../../../..'
+alias ccccc='cd ../../../../..'
+alias cccccc='cd ../../../../../..'
+
+# jump script for bash
+alias j='source ~/.scripts/jump.sh'
+
+alias f='find | grep --color=auto -i'
+alias g='grep --color=auto -nirEI'
+
+
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
@@ -120,3 +131,6 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
