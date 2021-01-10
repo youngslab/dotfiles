@@ -96,6 +96,11 @@ jump_comp(){
 }
 
 jump_image(){
+	if [ -z $1 ]; then
+		cd ~/35/integration
+		return
+	fi
+
 	cnt=$(find ~/35/integration -maxdepth 2 -type d -name "*$1*" | wc -l)
 	if [ $cnt -gt 1 ]; then
 		find ~/35/integration -maxdepth 2 -type d -name "*$1*"
