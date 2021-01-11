@@ -1,5 +1,4 @@
-# ~/.bashrc: executed by bash(1) for non-login shells.  # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc) # for examples
-
+# ~/.bashrc: executed by bash(1) for non-login shells.  # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc) # for examples 
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -60,7 +59,8 @@ fi
 if [ "$color_prompt" = yes ]; then
     #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
     #PS1="\[$(tput bold)\]\[\033[38;5;33m\]\w\[$(tput sgr0)\]\n\[$(tput sgr0)\]\[$(tput bold)\]\[\033[38;5;13m\]>\[$(tput sgr0)\] \[$(tput sgr0)\]"
-    PS1="\[$(tput bold)\]\[\033[1;34m\]\w\[$(tput sgr0)\]\n\h \[$(tput sgr0)\]\[$(tput bold)\]\[\033[1;35m\]>\[$(tput sgr0)\] \[$(tput sgr0)\]"
+    #PS1="\[\033[0;30m\]\h \[$(tput bold)\]\[\033[1;34m\]\w\[$(tput sgr0)\]\n\[$(tput sgr0)\]\[$(tput bold)\]\[\033[1;35m\] >\[$(tput sgr0)\] \[$(tput sgr0)\]"
+    PS1="\[$(tput bold)\]\[\033[1;34m\]\w\[$(tput sgr0)\]\[\033[0;30m\] | \h \n\[$(tput sgr0)\]\[$(tput bold)\]\[\033[1;35m\]>\[$(tput sgr0)\] \[$(tput sgr0)\]"
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
@@ -135,6 +135,12 @@ if ! shopt -oq posix; then
 fi
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# utiliies
+source ~/.dotfiles/runcom/.misc.sh
+
+# path
+PATH=~/.scripts:$PATH
 
 # partial history search
 bind '"\C-p": history-search-backward'
