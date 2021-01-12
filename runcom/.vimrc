@@ -129,8 +129,6 @@ let g:airline#extensions#tabline#enabled = 1 " for buffers
 let g:airline_powerline_fonts = 1            " symbols
 set laststatus=2                             " need to show the power line.
 
-" plugin - nerd
-
 " plugin - syntax
 let g:cpp_class_scope_highlight = 1
 
@@ -157,7 +155,7 @@ nnoremap k gk
 
 " --------------------------------------------------
 " configure - build 
-set makeprg=cmake\ --build\ ./build
+"set makeprg=cmake\ --build\ ./build
 
 nnoremap <F5> :Make<CR>
 " -- gererate 
@@ -402,7 +400,7 @@ inoremap <C-H> <Left>
 
 " auto commands
 au ExitPre * call Term_Exit()
-au TerminalOpen * if &buftype == 'terminal' | setlocal bufhidden=hide | endif
+au TerminalOpen * if &buftype == 'terminal' | setlocal bufhidden=hide nobuflisted | endif
 au BufEnter * if &buftype == 'terminal' | :startinsert | endif
 au BufDelete * if &buftype == 'terminal' | echom "BufDelete" | endif
 au BufUnload * if &buftype == 'terminal' | echom "BufUnload" | endif
@@ -412,6 +410,8 @@ tnoremap <C-J> <C-W><C-J>
 tnoremap <C-K> <C-W><C-K>
 tnoremap <C-L> <C-W><C-L>
 tnoremap <C-H> <C-W><C-H>
+tnoremap <ESC> <C-W>N
+tnoremap <C-V> <C-W>"0
 
 " toggle keymap
 nnoremap <C-G> :call Term_toggle(10)<CR>
@@ -443,4 +443,12 @@ function! Term_Exit()
 	echom "try to delete: buffer nr: " g:term_buf
 	exec "bdelete! " g:term_buf
 endfunction
+
+"let g:terminal_ansi_colors = [
+  "\'#003440', '#dc312e', '#859901', '#b58900',
+  "\'#268ad2', '#d33582', '#2aa197', '#eee8d5',
+  "\'#003440', '#cb4b16', '#586d74', '#657b82',
+  "\'#839495', '#6c6ec6', '#93a0a1', '#fdf6e3' ]
+
+hi Terminal ctermbg=0
 
