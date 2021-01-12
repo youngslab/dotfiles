@@ -106,7 +106,7 @@ alias cccccc='cd ../../../../../..'
 # jump script for bash
 alias j='source ~/.scripts/jump.sh'
 
-alias f='find | grep --color=auto -i'
+alias f='find . | grep --color=auto -i'
 alias g='grep --color=auto -nirEI'
 
 
