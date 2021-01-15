@@ -452,3 +452,4 @@ endfunction
 
 hi Terminal ctermbg=0
 
+nnoremap <leader>l :ls<CR>:b<space>
