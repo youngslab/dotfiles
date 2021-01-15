@@ -109,6 +109,8 @@ alias j='source ~/.scripts/jump.sh'
 alias f='find . | grep --color=auto -i'
 alias g='grep --color=auto -nirEI'
 
+alias pwd='dirs'
+alias lamb="ssh -t jy000.park@10.229.9.70 \"cd $(dirs); exec /bin/bash -l\"; "
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -145,4 +147,10 @@ PATH=~/.scripts:$PATH
 # partial history search
 bind '"\C-p": history-search-backward'
 bind '"\C-n": history-search-forward'
+
+
+# Serial Service
+source ~/.scripts/serial.sh
+alias cu='serial_set_server; cu'
+alias s='serial_send'
 

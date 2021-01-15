@@ -43,6 +43,9 @@ jump_kernel(){
 		qnx):
 			os_path=$_JUMP_ROOT/sources/qnx
 			;;
+		bl2):
+			os_path=$_JUMP_ROOT/sources/bl2-boot
+			;;
 	esac
 
 	if [ ! -d $os_path ] ; then
@@ -115,13 +118,13 @@ jump() {
 	hcp3|icas):
 		jump_project $1
 		;;
-	and|android|linux|qnx):
+	and|android|linux|qnx|bl2):
 		jump_kernel $1
 		;;
 	root):
 		jump_root
 		;;
-	dt|kbase):
+	dt|kbase|bl2):
 		jump_comp $1
 		;;
 	img|image):
