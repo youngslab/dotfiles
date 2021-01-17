@@ -56,11 +56,19 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
+parse_git_branch() {
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+
 if [ "$color_prompt" = yes ]; then
     #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
     #PS1="\[$(tput bold)\]\[\033[38;5;33m\]\w\[$(tput sgr0)\]\n\[$(tput sgr0)\]\[$(tput bold)\]\[\033[38;5;13m\]>\[$(tput sgr0)\] \[$(tput sgr0)\]"
     #PS1="\[\033[0;30m\]\h \[$(tput bold)\]\[\033[1;34m\]\w\[$(tput sgr0)\]\n\[$(tput sgr0)\]\[$(tput bold)\]\[\033[1;35m\] >\[$(tput sgr0)\] \[$(tput sgr0)\]"
-    PS1="\[$(tput bold)\]\[\033[1;34m\]\w\[$(tput sgr0)\]\[\033[0;30m\] | \h \n\[$(tput sgr0)\]\[$(tput bold)\]\[\033[1;35m\]>\[$(tput sgr0)\] \[$(tput sgr0)\]"
+    #PS1="\[$(tput bold)\]\[\033[1;34m\]\w\[$(tput sgr0)\]\[\033[0;30m\] | \h \n\[$(tput sgr0)\]\[$(tput bold)\]\[\033[1;35m\]>\[$(tput sgr0)\] \[$(tput sgr0)\]"
+    PS1="\[$(tput bold)\]\[\033[1;34m\]\w"
+		PS1=$PS1"\[\033[32m\]\$(parse_git_branch)\[\033[00m\]"
+		PS1=$PS1"\[$(tput sgr0)\]\[\033[0;30m\] | \h \n"
+		PS1=$PS1"\[$(tput sgr0)\]\[$(tput bold)\]\[\033[1;35m\]>\[$(tput sgr0)\] \[$(tput sgr0)\]"
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
@@ -137,6 +145,11 @@ if ! shopt -oq posix; then
 fi
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# bash completion from brew
+test -f `brew --prefix`/etc/bash_completion && . $_
+test -f `brew --prefix`/etc/bash_completion.d/git-completion.bash && . $_
+test -f `brew --prefix`/etc/bash_completion.d/tmux && . $_
 
 # utiliies
 source ~/.dotfiles/runcom/.misc.sh
