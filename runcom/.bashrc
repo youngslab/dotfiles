@@ -144,7 +144,10 @@ if ! shopt -oq posix; then
   fi
 fi
 
+#      fzf
+##################
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
 
 # bash completion from brew
 test -f `brew --prefix`/etc/bash_completion && . $_
