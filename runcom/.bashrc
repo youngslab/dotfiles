@@ -118,7 +118,7 @@ alias f='find . | grep --color=auto -i'
 alias g='grep --color=auto -nirEI'
 
 alias pwd='dirs'
-alias lamb="ssh -t jy000.park@10.229.9.70 \"cd $(dirs); exec /bin/bash -l\"; "
+
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -149,6 +149,10 @@ fi
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 
+# brew enviroment
+# it's going to export env variables(LINUX_VARIABLES)
+eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+
 # bash completion from brew
 test -f `brew --prefix`/etc/bash_completion && . $_
 test -f `brew --prefix`/etc/bash_completion.d/git-completion.bash && . $_
@@ -169,4 +173,13 @@ bind '"\C-n": history-search-forward'
 source ~/.scripts/serial.sh
 alias cu='serial_set_server; cu'
 alias s='serial_send'
+
+# Dev server
+lamb() {
+  ssh -t jy000.park@10.229.9.70 "cd $(dirs); exec \$SHELL -l"
+}
+
+
+
+
 
