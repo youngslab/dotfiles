@@ -144,9 +144,11 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# ----------------
 #      fzf
-##################
+# ----------------
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+export FZF_DEFAULT_OPTS="--bind 'ctrl-k:preview-up,ctrl-j:preview-down,ctrl-d:preview-page-down,ctrl-u:preview-page-up'" v
 
 
 # brew enviroment
@@ -168,7 +170,6 @@ PATH=~/.scripts:$PATH
 bind '"\C-p": history-search-backward'
 bind '"\C-n": history-search-forward'
 
-
 # Serial Service
 source ~/.scripts/serial.sh
 alias cu='serial_set_server; cu'
@@ -178,8 +179,5 @@ alias s='serial_send'
 lamb() {
   ssh -t jy000.park@10.229.9.70 "cd $(dirs); exec \$SHELL -l"
 }
-
-
-
 
 
