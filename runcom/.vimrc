@@ -198,6 +198,9 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+" normal mode - refresh
+nnoremap <C-R> :redraw!<CR>
+
 " insert mode - cursor movment
 inoremap <C-J> <Down>
 inoremap <C-K> <Up>
