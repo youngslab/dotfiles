@@ -4,6 +4,30 @@ tmux_curr_pane_id(){
   tmux display-message -p '#I.#P'
 }
 
+tmux_curr_win_id(){
+  tmux display-message -p '#I'
+}
+
+tmux_pane_count(){
+  tmux list-panes | wc -l
+}
+
+# $1 : src pane id. ex) 1.3
+# return its new pane id
+tmux_take_pane(){
+	winid=$(tmux_curr_win_id)
+	paneid=$(tmux_curr_pane_id)
+	prev=$(tmux_pane_count)
+  tmux join-pane -s $1 -t $winid > /dev/null 2>&1
+	tmux select-pane -t $paneid > /dev/null 2>&1
+	curr=$(tmux_pane_count)
+	if [ $prev == $curr ]; then
+		echo -1.-1
+		return
+	fi
+	echo $winid.$curr
+}
+
 # server
 # $1: token
 dispatcher_set_server() {
@@ -14,6 +38,19 @@ dispatcher_set_server() {
   tmux setenv $1 $(tmux_curr_pane_id)
 }
 
+# $1: server name
+dispatcher_take_server(){
+  server=$(tmux showenv ${1} | sed "s:^.*=::")
+	server=$(tmux_take_pane $server)
+	echo dispatcher takes $server
+	if [ server == "-1.-1" ]; then
+		return
+	fi
+
+	tmux setenv $1 $server
+}
+
+
 # $1: server, $2: command
 dispatcher_send_to() {
   # TODO: check server exists
@@ -21,6 +58,7 @@ dispatcher_send_to() {
   shift
   tmux send-keys -t $server "$*" Enter
 }
+
 
 dispatcher_usage(){
   echo "USAGE: Set up a server and send command to it."

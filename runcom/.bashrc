@@ -159,6 +159,7 @@ eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 test -f `brew --prefix`/etc/bash_completion && . $_
 test -f `brew --prefix`/etc/bash_completion.d/git-completion.bash && . $_
 test -f `brew --prefix`/etc/bash_completion.d/tmux && . $_
+test -f `brew --prefix`/etc/bash_completion.d/brew && . $_
 
 # utiliies
 source ~/.dotfiles/runcom/.misc.sh
