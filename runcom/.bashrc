@@ -117,7 +117,7 @@ alias j='source ~/.scripts/jump.sh'
 alias f='find . | grep --color=auto -i'
 alias g='grep --color=auto -nirEI'
 
-alias pwd='dirs'
+#alias pwd='dirs'
 
 
 # Add an "alert" alias for long running commands.  Use like so:
