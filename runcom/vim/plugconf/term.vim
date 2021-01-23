@@ -2,7 +2,6 @@
 " ----------------------
 " TERMINAL Configuration
 " ----------------------
-
 " auto commands
 au ExitPre * call Term_Exit()
 au TerminalOpen * if &buftype == 'terminal' | setlocal bufhidden=hide nobuflisted | endif
@@ -57,4 +56,7 @@ nnoremap <leader>t  :Files<CR>
 "(s)ymobls
 nnoremap <leader>s  :Tags <CR>
 
+" Termdebug
+let g:termdebug_popup = 0
+let g:termdebug_wide = 163
 
