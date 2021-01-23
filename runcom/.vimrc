@@ -63,6 +63,9 @@ Plug 'alx741/vim-hindent', {'for': 'haskell'}
 "" Python
 "Plug 'klen/python-mode' , {'for': 'python', 'branch': 'develop'} 
 
+" Tagbar
+Plug 'liuchengxu/vista.vim'
+
 call plug#end()
 
 " -------------------------
@@ -265,6 +268,7 @@ let g:airline#extensions#tabline#enabled = 1 " for buffers
 let g:airline_powerline_fonts = 1            " symbols
 set laststatus=2                             " need to show the power line.
 
+
 " --------------------------------------------------
 " Plugin - Load
 " --------------------------------------------------
@@ -274,3 +278,4 @@ source ~/.dotfiles/runcom/vim/plugconf/fzf.vim
 source ~/.dotfiles/runcom/vim/plugconf/term.vim
 source ~/.dotfiles/runcom/vim/plugconf/cscope.vim
 source ~/.dotfiles/runcom/vim/plugconf/syntastic.vim
+source ~/.dotfiles/runcom/vim/plugconf/vista.vim
