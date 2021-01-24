@@ -181,4 +181,9 @@ lamb() {
   ssh -t jy000.park@10.229.9.70 "cd $(dirs); exec \$SHELL -l"
 }
 
+# tab completion
+if [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+  source ~/.dotfiles/scripts/fzf-bash-completion.sh
+  bind -x '"\t": fzf_bash_completion'
+fi
 
