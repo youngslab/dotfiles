@@ -2,7 +2,9 @@
 " Plugin - vist (tagbar)
 " --------------------------------------------------
 
-nnoremap <C-m> :Vista!!<CR>
+"map <c-m> :vista!!<cr>
+map <C-p> :Vista!!<CR>
+
 
 function! NearestMethodOrFunction() abort
   return get(b:, 'vista_nearest_method_or_function', '')
