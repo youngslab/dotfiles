@@ -237,6 +237,9 @@ nnoremap <F7> :Dispatch cmake -B./mbuild -H. -DCMAKE_EXPORT_COMPILE_COMMANDS=1 <
 map <C-n> :NERDTreeToggle<CR>
 let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 
+" close after jump
+let NERDTreeQuitOnOpen=1
+
 " --------------------------------------------------
 " Plugin - ClangFormat
 " --------------------------------------------------
