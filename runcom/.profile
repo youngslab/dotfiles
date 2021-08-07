@@ -27,3 +27,6 @@ export PATH="$HOME/.scripts:$PATH"
 # eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 # eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+
+# rust envirment
+. "$HOME/.cargo/env"
