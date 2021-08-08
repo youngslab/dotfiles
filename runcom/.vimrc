@@ -40,7 +40,7 @@ Plug 'altercation/vim-colors-solarized'
 
 Plug 'brookhong/cscope.vim'
 
-Plug 'craigemery/vim-autotag'
+"Plug 'craigemery/vim-autotag'
 
 " Command complete using ctrl-p, ctrl-n
 Plug 'vim-scripts/CmdlineComplete'
@@ -59,6 +59,10 @@ Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'eagletmt/neco-ghc', {'for': 'haskell'}
 Plug 'neovimhaskell/haskell-vim' , {'for': 'haskell'}
 Plug 'alx741/vim-hindent', {'for': 'haskell'}
+
+" Rust
+Plug 'rust-lang/rust.vim'
+
 
 "" Python
 "Plug 'klen/python-mode' , {'for': 'python', 'branch': 'develop'} 
@@ -271,6 +275,10 @@ let g:airline#extensions#tabline#enabled = 1 " for buffers
 let g:airline_powerline_fonts = 1            " symbols
 set laststatus=2                             " need to show the power line.
 
+" --------------------------------------------------
+" Plugin - Rust
+" --------------------------------------------------
+let g:rustfmt_autosave = 1
 
 " --------------------------------------------------
 " Plugin - Load
