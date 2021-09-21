@@ -1,0 +1,22 @@
+
+HISTSIZE=100000
+HISTFILESIZE=20000
+
+# store bash history imdediately
+PROMPT_COMMAND='history -a;history -n'
+
+# partial history search
+bind '"\C-p": history-search-backward'
+bind '"\C-n": history-search-forward'
+
+# customized prompt
+parse_git_branch() {
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+
+PS1="\[$(tput bold)\]\[\033[1;34m\]\w"
+PS1=$PS1"\[\033[32m\]\$(parse_git_branch)\[\033[00m\]"
+PS1=$PS1"\[$(tput sgr0)\]\[\033[0;30m\] | \h \n"
+PS1=$PS1"\[$(tput sgr0)\]\[$(tput bold)\]\[\033[1;35m\]>\[$(tput sgr0)\] \[$(tput sgr0)\]"
+
+test -f ~/.shellrc && . $_

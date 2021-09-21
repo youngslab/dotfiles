@@ -1,10 +1,10 @@
 
 [user]
   name = Jaeyoung Park
-	email = jaeyoungs.park@gmail.com
+  email = jaeyoungs.park@gmail.com
 
 [github]
-  user = youngslab 
+  user = youngslab
 
 [core]
   editor = vim
@@ -13,5 +13,5 @@
   autocrlf = input
 
 [alias]
-    lg = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold red)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(cyan)<%an>%C(reset)%C(bold yellow)%d%C(reset)' --all
+  lg = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold red)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(cyan)<%an>%C(reset)%C(bold yellow)%d%C(reset)' --all
 

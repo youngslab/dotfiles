@@ -1,4 +1,9 @@
 
+
+alias cu='serial_set_server; cu'
+
+alias s='serial_send'
+
 tmux_curr_window_idx(){
   tmux display-message -p '#I'
 }

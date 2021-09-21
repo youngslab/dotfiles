@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-
-brew install zsh
+sudo apt install -y zsh autojump
 
 # oh-my-zsh
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
@@ -12,9 +11,6 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 # auto suggestion
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
-# auto jump
-brew install autojump
-
-
 # apply custom theme
 ln -sfv "$DOTFILES_DIR/runcom/refined_2.zsh-theme" ~/.oh-my-zsh/themes/refined_2.zsh-theme
+

@@ -1,0 +1,25 @@
+# Set name of the theme to load. Optionally, if you set this to "random"
+# it'll load a random theme each time that oh-my-zsh is loaded.
+# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+ZSH_THEME="refined_2"
+
+plugins=(git autojump zsh-autosuggestions zsh-syntax-highlighting)
+
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=5'
+
+# User configuration
+# key bind
+bindkey '^p' history-beginning-search-backward
+bindkey '^n' history-beginning-search-forward
+
+# LINUX ONLY.
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
+  eval `dircolors ~/.dircolors`
+  zstyle ':completion:*' list-colors "${(@s.:.)LS_COLORS}"
+  autoload -Uz compinit
+  compinit
+elif [[ "$OSTYPE" == "darwin18.2.0" ]]; then
+  export LSCOLORS=exfxfeaeBxxehehbadacea
+fi
+
+test -f ~/.shellrc && . $_
