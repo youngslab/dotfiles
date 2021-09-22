@@ -27,18 +27,23 @@ ln -sfv "$DOTFILES_DIR/runcom/.gitconfig" ~
 ln -sfv "$DOTFILES_DIR/runcom/.tmux.conf" ~
 
 # 5. misc
-ln -sfv "$DOTFILES_DIR/runcom/scripts" ~/.scripts
+ln -sfv "$DOTFILES_DIR/scripts" ~/.scripts
 
-# 6. customized bashrc
+
+# 6. common shell runcom files
+ln -sfv "$DOTFILES_DIR/runcom/.shellrc" ~
+ln -sfv "$DOTFILES_DIR/runcom/.shellrc_aliases" ~
+
+# 7. customized bashrc
 ln -sfv "$DOTFILES_DIR/runcom/.bashrc_customized" ~
 printf "\n\n# Load a bashrc customized runcome file. \
         \ntest -f ~/.bashrc_customized && . \$_\n" >> ~/.bashrc
 
-# 7. zsh
+# 8. customized zshrc
 ./install/zsh.sh
 ln -sfv "$DOTFILES_DIR/runcom/.zshrc_customized" ~
 printf "\n\n# Load a zshrc customized runcome file. \
         \ntest -f ~/.zshrc_customized && . \$_\n" >> ~/.zshrc
 
 # 8. vim
-./install/vim.sh
+ls./install/vim.sh

@@ -4,7 +4,7 @@
 export PATH=~/.scripts:$PATH
 
 # alias
-test ~/.shell_aliases && . $_
+test ~/.shellrc_aliases && . $_
 
 # Serial Service
 test ~/.scripts/serial.sh && . $_

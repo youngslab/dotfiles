@@ -11,6 +11,3 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 # auto suggestion
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
-# apply custom theme
-ln -sfv "$DOTFILES_DIR/runcom/refined_2.zsh-theme" ~/.oh-my-zsh/themes/refined_2.zsh-theme
-
