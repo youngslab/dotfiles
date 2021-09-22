@@ -20,23 +20,25 @@ ln -sfv "$DOTFILES_DIR/runcom/.vimrc" ~
 # 2. dircolors for solarized dark
 ln -sfv "$DOTFILES_DIR/runcom/.dircolors" ~
 
-# 3. customized bashrc
-ln -sfv "$DOTFILES_DIR/runcom/.bashrc_customized" ~
-echo "test -f ~/.bashrc_customized && . $_" >> .bashrc
-
-# 4. gitconfig
+# 3. gitconfig
 ln -sfv "$DOTFILES_DIR/runcom/.gitconfig" ~
 
-# 5. tmux
+# 4. tmux
 ln -sfv "$DOTFILES_DIR/runcom/.tmux.conf" ~
 
-# 6. misc
+# 5. misc
 ln -sfv "$DOTFILES_DIR/runcom/scripts" ~/.scripts
+
+# 6. customized bashrc
+ln -sfv "$DOTFILES_DIR/runcom/.bashrc_customized" ~
+printf "\n\n# Load a bashrc customized runcome file. \
+        \ntest -f ~/.bashrc_customized && . \$_\n" >> ~/.bashrc
 
 # 7. zsh
 ./install/zsh.sh
 ln -sfv "$DOTFILES_DIR/runcom/.zshrc_customized" ~
-echo "test -f ~/.zshrc_customized && . $_" >> .zshrc
+printf "\n\n# Load a zshrc customized runcome file. \
+        \ntest -f ~/.zshrc_customized && . \$_\n" >> ~/.zshrc
 
 # 8. vim
 ./install/vim.sh
