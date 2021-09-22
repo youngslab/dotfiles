@@ -1,10 +1,14 @@
 #!/usr/bin/env bash
 
 # pacakges.
-sudo apt-get -y update
-sudo apt-get -y upgrade
-sudo apt-get -y install cmake g++ curl vim clang-format silversearcher-ag \
-                     clang-tidy tmux
+sudo apt-get -y update && sudo apt -y upgrade && sudo apt install -y \
+  cmake g++ curl  vim clang-format silversearcher-ag \
+  clang-tidy tmux cscope
+
+if [ "$?" -ne 0 ]; then
+ echo "You need proper priviliedged"
+ exit -1
+fi
 
 # Get current dir (so run this script from anywhere)
 export DOTFILES_DIR EXTRA_DIR
@@ -29,7 +33,6 @@ ln -sfv "$DOTFILES_DIR/runcom/.tmux.conf" ~
 # 5. misc
 ln -sfv "$DOTFILES_DIR/scripts" ~/.scripts
 
-
 # 6. common shell runcom files
 ln -sfv "$DOTFILES_DIR/runcom/.shellrc" ~
 ln -sfv "$DOTFILES_DIR/runcom/.shellrc_aliases" ~
@@ -37,13 +40,13 @@ ln -sfv "$DOTFILES_DIR/runcom/.shellrc_aliases" ~
 # 7. customized bashrc
 ln -sfv "$DOTFILES_DIR/runcom/.bashrc_customized" ~
 printf "\n\n# Load a bashrc customized runcome file. \
-        \ntest -f ~/.bashrc_customized && . \$_\n" >> ~/.bashrc
+				\ntest -f ~/.bashrc_customized && . \$_\n" >> ~/.bashrc
 
 # 8. customized zshrc
 ./install/zsh.sh
 ln -sfv "$DOTFILES_DIR/runcom/.zshrc_customized" ~
 printf "\n\n# Load a zshrc customized runcome file. \
-        \ntest -f ~/.zshrc_customized && . \$_\n" >> ~/.zshrc
+				\ntest -f ~/.zshrc_customized && . \$_\n" >> ~/.zshrc
 
 # 8. vim
 ls./install/vim.sh
