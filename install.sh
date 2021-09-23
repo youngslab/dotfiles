@@ -3,7 +3,11 @@
 # pacakges.
 sudo apt-get -y update && sudo apt -y upgrade && sudo apt install -y \
   cmake g++ curl  vim clang-format silversearcher-ag \
-  clang-tidy tmux cscope
+  clang-tidy tmux cscope \
+  python3-pip pkg-config
+
+sudo pip3 install conan
+
 
 if [ "$?" -ne 0 ]; then
  echo "You need proper priviliedged"
