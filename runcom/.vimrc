@@ -106,8 +106,9 @@ set nu rnu
 set cindent
 set smartindent
 
+" linux style
 " set expandtab " tab to space
-set tabstop=2
+set tabstop=8
 set shiftwidth=2
 
 " Hybrid line number ( relative + absolute)
@@ -142,7 +143,8 @@ set splitright
 " show hidden characters in Vim
 set list
 " settings for hidden chars (or set lcs=.....)
-set listchars=tab:▒░,trail:▓,nbsp:░
+"set listchars=tab:▒░,trail:▓,nbsp:░
+set listchars=tab:··,trail:·,nbsp:·
 
 
 " menu autocompletion
