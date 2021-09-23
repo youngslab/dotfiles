@@ -2,7 +2,7 @@
 
 # pacakges.
 sudo apt-get -y update && sudo apt -y upgrade && sudo apt install -y \
-  cmake g++ curl  vim clang-format silversearcher-ag \
+  cmake g++ curl vim clang-format silversearcher-ag ripgrep \
   clang-tidy tmux cscope \
   python3-pip pkg-config \
   clangd
