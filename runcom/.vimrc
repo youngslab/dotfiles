@@ -251,11 +251,10 @@ nnoremap <F6> :Dispatch mkdir -p build
                        \ -DCMAKE_EXPORT_COMPILE_COMMANDS=y
                        \ -DCMAKE_BUILD_TYPE=Debug
                        \ -DCMAKE_MODULE_PATH=`pwd`/build
-               \ && ln -svf ./build/compile_commands.json .
-               \ CocRestart <CR>
+               \ && ln -svf ./build/compile_commands.json . <CR>
 
 " -- generate compilation
-nnoremap <F7> :Dispatch cmake -B./mbuild -H. -DCMAKE_EXPORT_COMPILE_COMMANDS=1 <CR>
+nnoremap <F7> :CocRestart <CR>
 
 " --------------------------------------------------
 " Plugin - NerdTree
