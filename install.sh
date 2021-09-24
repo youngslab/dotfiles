@@ -44,14 +44,14 @@ ln -sfv "$DOTFILES_DIR/runcom/.shellrc_aliases" ~
 
 # 7. customized bashrc
 ln -sfv "$DOTFILES_DIR/runcom/.bashrc_customized" ~
-printf "\n\n# Load a bashrc customized runcome file. \
-				\ntest -f ~/.bashrc_customized && . \$_\n" >> ~/.bashrc
+printf "\n\n# Load a bashrc customized runcome file.
+ \ntest -f ~/.bashrc_customized && . \$_\n" >> ~/.bashrc
 
 # 8. customized zshrc
 ./install/zsh.sh
 ln -sfv "$DOTFILES_DIR/runcom/.zshrc_customized" ~
 printf "\n\n# Load a zshrc customized runcome file. \
-				\ntest -f ~/.zshrc_customized && . \$_\n" >> ~/.zshrc
+ \ntest -f ~/.zshrc_customized && . \$_\n" >> ~/.zshrc
 
 # 8. vim
 ls./install/vim.sh
