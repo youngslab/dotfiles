@@ -11,7 +11,17 @@
   filemode = false
   trustctime = false
   autocrlf = input
+  pager = less -F -X
 
 [alias]
-  lg = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold red)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(cyan)<%an>%C(reset)%C(bold yellow)%d%C(reset)' --all
+  l = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold red)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(cyan)<%an>%C(reset)%C(bold yellow)%d%C(reset)' --all
+  a = add .
+  s = status -sb
+  b = branch -a
+  c = commit
+  d = diff
+  cm = commit -m
+  ph = push
+  pl = pull --rebase -v
+
 
