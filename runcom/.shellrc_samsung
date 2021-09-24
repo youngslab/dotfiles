@@ -1,0 +1,5 @@
+
+# Dev server
+lamb() {
+  ssh -Y -p 8070 -t jy000.park@localhost "cd $(dirs); exec \$SHELL -l"
+}

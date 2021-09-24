@@ -3,8 +3,6 @@
 # path
 export PATH=~/.scripts:$PATH
 
-# alias
-test ~/.shellrc_aliases && . $_
 
 # Serial Service
 test ~/.scripts/serial.sh && . $_
@@ -12,10 +10,17 @@ test ~/.scripts/serial.sh && . $_
 # Misc functions
 test ~/.scripts/misc.sh && . $_
 
-# Dev server
-lamb() {
- ssh -t jy000.park@10.229.9.70 "cd $(dirs); exec \$SHELL -l"
-}
+
+# Include .shellrc_* files.
+# ------------------------
+# https://stackoverflow.com/questions/12426606/how-to-source-all-files-in-a-directory
+# below line in not possible
+# find ~ -maxdepth 1 -name ".shellrc_*" | xargs source
+# find ~ -maxdepth 1 -name ".shellrc_*" | xargs . 
+for file in ~/.shellrc_* ; do
+  . $file
+done
+# ------------------------
 
 # tab completion
 # if [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
