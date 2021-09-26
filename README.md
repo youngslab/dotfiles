@@ -9,6 +9,3 @@
 3. misc function shell: ~/.scripts
 
 
-
-
-

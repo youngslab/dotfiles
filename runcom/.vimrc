@@ -1,6 +1,6 @@
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+	\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
@@ -63,9 +63,11 @@ Plug 'alx741/vim-hindent', {'for': 'haskell'}
 " Rust
 Plug 'rust-lang/rust.vim'
 
+" CMake, Shell - formatter
+Plug 'chiel92/vim-autoformat'
 
 "" Python
-"Plug 'klen/python-mode' , {'for': 'python', 'branch': 'develop'} 
+"Plug 'klen/python-mode' , {'for': 'python', 'branch': 'develop'}
 
 " Tagbar
 Plug 'liuchengxu/vista.vim'
@@ -78,11 +80,11 @@ call plug#end()
 
 " Setup g:os for current Operating System.
 if !exists("g:os")
-    if has("win64") || has("win32") || has("win16")
-        let g:os = "Windows"
-    else
-        let g:os = substitute(system('uname'), '\n', '', '')
-    endif
+  if has("win64") || has("win32") || has("win16")
+    let g:os = "Windows"
+  else
+    let g:os = substitute(system('uname'), '\n', '', '')
+  endif
 endif
 
 " set term=screen-256color  " support 256 color in term
@@ -125,10 +127,10 @@ endif
 " WSL yank support
 let s:clip = '/mnt/c/Windows/System32/clip.exe'  " change this path according to your mount point
 if executable(s:clip)
-    augroup WSLYank
-        autocmd!
-        autocmd TextYankPost * if v:event.operator ==# 'y' | call system(s:clip, @0) | endif
-    augroup END
+  augroup WSLYank
+    autocmd!
+    autocmd TextYankPost * if v:event.operator ==# 'y' | call system(s:clip, @0) | endif
+  augroup END
 endif
 
 " themes
@@ -237,8 +239,6 @@ tnoremap <C-Q> <C-W>N
 " terminal - paste 0 resister
 tnoremap <C-V> <C-W>"0
 
-
-
 " --------------------------------------------------
 " Plugin - Dispatch
 " --------------------------------------------------
@@ -246,12 +246,12 @@ tnoremap <C-V> <C-W>"0
 nnoremap <F5> :Dispatch cmake --build ./build<CR>
 
 nnoremap <F6> :Dispatch mkdir -p build
-               \ && conan install --build=missing -if ./build .
-               \ && cmake -B./build -H. -G Ninja
-                       \ -DCMAKE_EXPORT_COMPILE_COMMANDS=y
-                       \ -DCMAKE_BUILD_TYPE=Debug
-                       \ -DCMAKE_MODULE_PATH=`pwd`/build
-               \ && ln -svf ./build/compile_commands.json . <CR>
+      \ && conan install --build=missing -if ./build .
+      \ && cmake -B./build -H. -G Ninja
+      \ -DCMAKE_EXPORT_COMPILE_COMMANDS=y
+      \ -DCMAKE_BUILD_TYPE=Debug
+      \ -DCMAKE_MODULE_PATH=`pwd`/build
+      \ && ln -svf ./build/compile_commands.json . <CR>
 
 " -- generate compilation
 nnoremap <F7> :CocRestart <CR>
@@ -269,10 +269,10 @@ let NERDTreeQuitOnOpen=1
 " Plugin - ClangFormat
 " --------------------------------------------------
 let g:clang_format#auto_format = 0
-let g:clang_format#style_options = { 
-    \ "IndentWidth" : 2, 
-    \ "SortIncludes" : "false",
-    \ "Standard" : "C++11" }
+let g:clang_format#style_options = {
+      \ "IndentWidth" : 2,
+      \ "SortIncludes" : "false",
+      \ "Standard" : "C++11" }
 " let g:clang_format#detect_style_file = 1
 let g:clang_format#code_style = "llvm"
 
@@ -312,4 +312,7 @@ source ~/.dotfiles/runcom/vim/plugconf/cscope.vim
 source ~/.dotfiles/runcom/vim/plugconf/syntastic.vim
 source ~/.dotfiles/runcom/vim/plugconf/vista.vim
 
-
+" --------------------------------------------------
+" Plugin - vim-autoformat
+" --------------------------------------------------
+nnoremap <F3> :Autoformat <CR>

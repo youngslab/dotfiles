@@ -7,12 +7,13 @@ sudo apt-get -y update && sudo apt -y upgrade && sudo apt install -y \
   python3-pip pkg-config \
   clangd
 
-sudo pip3 install conan
+sudo pip3 install conan \
+  cmakelang # cmake formatter
 
 
 if [ "$?" -ne 0 ]; then
- echo "You need proper priviliedged"
- exit -1
+  echo "You need proper priviliedged"
+  exit -1
 fi
 
 # Get current dir (so run this script from anywhere)
@@ -45,13 +46,13 @@ ln -sfv "$DOTFILES_DIR/runcom/.shellrc_aliases" ~
 # 7. customized bashrc
 ln -sfv "$DOTFILES_DIR/runcom/.bashrc_customized" ~
 printf "\n\n# Load a bashrc customized runcome file.
- \ntest -f ~/.bashrc_customized && . \$_\n" >> ~/.bashrc
+\ntest -f ~/.bashrc_customized && . \$_\n" >> ~/.bashrc
 
 # 8. customized zshrc
 ./install/zsh.sh
 ln -sfv "$DOTFILES_DIR/runcom/.zshrc_customized" ~
 printf "\n\n# Load a zshrc customized runcome file. \
- \ntest -f ~/.zshrc_customized && . \$_\n" >> ~/.zshrc
+  \ntest -f ~/.zshrc_customized && . \$_\n" >> ~/.zshrc
 
 # 8. vim
 ls./install/vim.sh
