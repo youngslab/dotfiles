@@ -42,9 +42,6 @@ Plug 'brookhong/cscope.vim'
 
 "Plug 'craigemery/vim-autotag'
 
-" Command complete using ctrl-p, ctrl-n
-Plug 'vim-scripts/CmdlineComplete'
-
 Plug 'rhysd/vim-clang-format', {'for': 'cpp'}
 
 Plug 'vim-scripts/DoxygenToolkit.vim', {'for': 'cpp'}
@@ -219,7 +216,7 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
 " normal mode - refresh
-nnoremap <C-R> :redraw!<CR>
+nnoremap <leader>r :redraw!<CR>
 
 " insert mode - cursor movment
 inoremap <C-J> <Down>
@@ -238,6 +235,10 @@ tnoremap <C-Q> <C-W>N
 
 " terminal - paste 0 resister
 tnoremap <C-V> <C-W>"0
+
+" history ctrl+p && ctlr+n
+cnoremap <C-p> <Up>
+cnoremap <C-n> <Down>
 
 " --------------------------------------------------
 " Plugin - Dispatch
@@ -315,4 +316,7 @@ source ~/.dotfiles/runcom/vim/plugconf/vista.vim
 " --------------------------------------------------
 " Plugin - vim-autoformat
 " --------------------------------------------------
-nnoremap <F3> :Autoformat <CR>
+nnoremap <F3> :Autoformat <CR> :w <CR>
+inoremap <F3> <esc> :Autoformat <CR> :w <CR>
+
+nnoremap <F4> :q <CR>
