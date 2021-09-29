@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 
 # path
-export PATH=~/.scripts:$PATH
+export PATH=~/.local/bin:~/.scripts:$PATH
 
 
 # Serial Service
@@ -9,7 +9,6 @@ test ~/.scripts/serial.sh && . $_
 
 # Misc functions
 test ~/.scripts/misc.sh && . $_
-
 
 # Include .shellrc_* files.
 # ------------------------
