@@ -23,4 +23,9 @@ elif [[ "$OSTYPE" == "darwin18.2.0" ]]; then
   export LSCOLORS=exfxfeaeBxxehehbadacea
 fi
 
+# Quick File saerch
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 test -f ~/.shellrc && . $_
+
+
