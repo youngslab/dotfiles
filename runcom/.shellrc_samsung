@@ -4,6 +4,11 @@ lamb() {
   ssh -Y -p 8070 -t jy000.park@localhost "cd $(dirs); exec \$SHELL -l"
 }
 
+tayo() {
+  ssh -fN -L8198:10.229.9.198:22 vts@10.229.18.103
+  ssh -Y -p 8198 -t jy000.park@localhost "cd $(dirs); exec \$SHELL -l"
+}
+
 export PIP_CERT=~/data/semi_samsung.pem
 export REQUESTS_CA_BUNDLE=~/data/semi_samsung.crt
 export CA_BUNDLE=~/data/semi_samsung.crt
