@@ -12,13 +12,9 @@ vim +PlugInstall
 # Coc
 #----
 # 1. Install nodejs
+#curl -sL install-node.vercel.app/lts | bash
 curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
 sudo apt-get install -y nodejs
-
-# 2. Build
-cd ~/.vim/bundle/coc.nvim
-yarn install
-yarn build
 
 # 3. Install coc plugins
 vim -c ":CocInstall coc-sh coc-clangd coc-cmake coc-python"

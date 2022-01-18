@@ -55,4 +55,4 @@ printf "\n\n# Load a zshrc customized runcome file. \
   \ntest -f ~/.zshrc_customized && . \$_\n" >> ~/.zshrc
 
 # 8. vim
-ls./install/vim.sh
+./install/vim.sh

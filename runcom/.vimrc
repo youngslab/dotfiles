@@ -22,7 +22,7 @@ Plug 'tpope/vim-unimpaired'
 
 Plug 'derekwyatt/vim-fswitch'
 
-Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'tpope/vim-fugitive'
 
