@@ -3,6 +3,10 @@
 # path
 export PATH=~/.local/bin:~/.scripts:$PATH
 
+# User configuration
+# key bind
+bindkey '^p' history-beginning-search-backward
+bindkey '^n' history-beginning-search-forward
 
 # Serial Service
 test ~/.scripts/serial.sh && . $_
@@ -21,8 +25,3 @@ for file in ~/.shellrc_* ; do
 done
 # ------------------------
 
-# tab completion
-# if [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-#  source ~/.dotfiles/scripts/fzf-bash-completion.sh
-#  bind -x '"\t": fzf_bash_completion'
-# fi

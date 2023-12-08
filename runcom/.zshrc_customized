@@ -4,14 +4,9 @@
 
 ZSH_THEME="refined_fast"
 
-plugins=(git autojump zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(git autojump zsh-autosuggestions zsh-syntax-highlighting zsh-fzf-history-search)
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=5'
-
-# User configuration
-# key bind
-bindkey '^p' history-beginning-search-backward
-bindkey '^n' history-beginning-search-forward
 
 # LINUX ONLY.
 if [[ "$OSTYPE" == "linux-gnu" ]]; then
@@ -21,6 +16,13 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
   compinit
 elif [[ "$OSTYPE" == "darwin18.2.0" ]]; then
   export LSCOLORS=exfxfeaeBxxehehbadacea
+fi
+
+# fzf tab completion for zsh
+# https://github.com/lincheney/fzf-tab-completion#bash
+if [[ "$(expr substr $(uname -s) 1 5)" == "Linux" ]]; then
+  source ~/.dotfiles/scripts/fzf-zsh-completion.sh
+  bindkey '^I' fzf_completion
 fi
 
 # Quick File saerch

@@ -9,6 +9,13 @@ PROMPT_COMMAND='history -a;history -n'
 bind '"\C-p": history-search-backward'
 bind '"\C-n": history-search-forward'
 
+# fzf tab completion for bash
+# https://github.com/lincheney/fzf-tab-completion#bash
+if [[ "$(expr substr $(uname -s) 1 5)" == "Linux" ]]; then
+  source ~/.dotfiles/scripts/fzf-bash-completion.sh
+  bind -x '"\t": fzf_bash_completion'
+fi
+
 # customized prompt
 parse_git_branch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
