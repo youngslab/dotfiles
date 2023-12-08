@@ -25,6 +25,11 @@ if [[ "$(expr substr $(uname -s) 1 5)" == "Linux" ]]; then
   bindkey '^I' fzf_completion
 fi
 
+# User configuration
+# key bind (ZSH)
+bindkey '^p' history-beginning-search-backward
+bindkey '^n' history-beginning-search-forward
+
 # Quick File saerch
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
