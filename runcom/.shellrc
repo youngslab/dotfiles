@@ -21,3 +21,24 @@ for file in ~/.shellrc_* ; do
 done
 # ------------------------
 
+# tab completion
+# if [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+#  source ~/.dotfiles/scripts/fzf-bash-completion.sh
+#  bind -x '"\t": fzf_bash_completion'
+# fi
+
+
+# MAC) enable ls colorized
+export LS_COLORS='fi=00:mi=00:mh=00:ln=01;36:or=01;31:di=01;34:ow=04;01;34:st=34:tw=04;34:'
+LS_COLORS+='pi=01;33:so=01;33:do=01;33:bd=01;33:cd=01;33:su=01;35:sg=01;35:ca=01;35:ex=01;32'
+if (( terminfo[colors] >= 256 )); then
+  LS_COLORS+=':no=38;5;248'
+else
+  LS_COLORS+=':no=1;30'
+fi
+
+export TREE_COLORS=${LS_COLORS//04;}
+export LSCOLORS='ExGxDxDxCxDxDxFxFxexEx'
+
+# Flutter
+export PATH=$PATH:~/flutter/bin

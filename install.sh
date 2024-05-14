@@ -25,7 +25,7 @@ DOTFILES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # Bunch of symlinks
 # 1. vimrc
-ln -sfv "$DOTFILES_DIR/runcom/.vimrc" ~
+ln -sfv "$DOTFILES_DIR/runcom/nvim" ~/.config/nvim
 
 # 2. dircolors for solarized dark
 ln -sfv "$DOTFILES_DIR/runcom/.dircolors" ~
@@ -54,5 +54,3 @@ ln -sfv "$DOTFILES_DIR/runcom/.zshrc_customized" ~
 printf "\n\n# Load a zshrc customized runcome file. \
   \ntest -f ~/.zshrc_customized && . \$_\n" >> ~/.zshrc
 
-# 8. vim
-./install/vim.sh
